@@ -1,4 +1,5 @@
-﻿namespace TravelExperts.Views
+﻿
+namespace TravelExperts.Views
 {
     partial class frmAdminGUI
     {
@@ -28,12 +29,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            listBox_Test = new ListBox();
+            SuspendLayout();
+            // 
+            // listBox_Test
+            // 
+            listBox_Test.FormattingEnabled = true;
+            listBox_Test.Location = new Point(62, 48);
+            listBox_Test.Name = "listBox_Test";
+            listBox_Test.Size = new Size(664, 324);
+            listBox_Test.TabIndex = 0;
+            // 
+            // frmAdminGUI
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(listBox_Test);
+            Name = "frmAdminGUI";
+            Text = "Form1";
+            Load += this.frmAdminGUI_Load;
+            ResumeLayout(false);
         }
 
+
+
         #endregion
+
+        private ListBox listBox_Test;
     }
 }

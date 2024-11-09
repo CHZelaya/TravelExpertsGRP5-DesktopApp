@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TravelExperts.Controllers\TravelExperts.Controllers.csproj" />
+    <ProjectReference Include="..\ClassLibrary1\TravelExperts.Controllers.csproj" />
     <ProjectReference Include="..\TravelExperts.Models\TravelExperts.Models.csproj" />
   </ItemGroup>
 

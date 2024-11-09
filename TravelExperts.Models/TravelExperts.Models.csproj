@@ -15,8 +15,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\TravelExperts.Controllers\TravelExperts.Controllers.csproj" />
-  </ItemGroup>
-
 </Project>
