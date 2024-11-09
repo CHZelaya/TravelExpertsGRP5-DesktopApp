@@ -1,4 +1,4 @@
-namespace AdminGUI
+namespace TravelExperts.Views
 {
     internal static class Program
     {

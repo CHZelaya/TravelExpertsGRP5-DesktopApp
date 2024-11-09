@@ -1,4 +1,4 @@
-﻿namespace AdminGUI
+﻿namespace TravelExperts.Views
 {
     partial class frmAdminGUI
     {
