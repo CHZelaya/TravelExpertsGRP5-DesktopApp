@@ -1,8 +1,5 @@
 # TravelExpertsGRP5-DesktopApp
 
-# Travel Experts Application
-
-
 ## To Do List - Project Workshop 3 (Current Group Focus)
 
 ### Form 1: Travel Packages Management
