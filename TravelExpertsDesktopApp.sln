@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelExperts.Models", "Tra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelExperts.Views", "TravelExperts.Views\TravelExperts.Views.csproj", "{30068B17-065D-443E-94AC-143777E6D93E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelExperts.Controllers", "TravelExperts.Controllers\TravelExperts.Controllers.csproj", "{86E404EC-D888-4287-BFAE-442A53213CAA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelExperts.Controllers", "ClassLibrary1\TravelExperts.Controllers.csproj", "{86E404EC-D888-4287-BFAE-442A53213CAA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
