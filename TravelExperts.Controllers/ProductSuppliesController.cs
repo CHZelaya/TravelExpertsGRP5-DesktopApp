@@ -22,6 +22,16 @@ namespace TravelExperts.Controllers
             return result;
         }
 
+        public static List<Supplier> getAllSuppliers()
+        {
+            List<Supplier> result = new List<Supplier>();
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                result = db.Suppliers.ToList();
+            }
+            return result;
+        }
+
         public static List<Supplier> getSuppliersByProductId(int productId)
         {
             //select s.SupName,s.SupplierId
