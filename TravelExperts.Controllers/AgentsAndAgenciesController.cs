@@ -18,6 +18,11 @@
         /// Queries DB and returns Agents in a List
         /// </summary>
         /// <returns></returns>
+        public List<Agency> GetAgencies()
+        {
+            return _context.Agencies.ToList();
+        }
+
         public List<Agent> GetAgents()
         {
             return _context.Agents.ToList();
