@@ -102,11 +102,12 @@ namespace TravelExperts.Views
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(428, 56);
+            label2.Font = new Font("Segoe UI", 9F, FontStyle.Underline, GraphicsUnit.Point, 0);
+            label2.Location = new Point(427, 64);
             label2.Name = "label2";
-            label2.Size = new Size(61, 15);
+            label2.Size = new Size(67, 15);
             label2.TabIndex = 4;
-            label2.Text = "Agency ID";
+            label2.Text = "Agency ID :";
             // 
             // textBox_AgencyID1
             // 
@@ -120,6 +121,7 @@ namespace TravelExperts.Views
             // 
             // textBox_AgencyAddress
             // 
+            textBox_AgencyAddress.BorderStyle = BorderStyle.FixedSingle;
             textBox_AgencyAddress.Location = new Point(21, 109);
             textBox_AgencyAddress.Margin = new Padding(3, 2, 3, 2);
             textBox_AgencyAddress.Name = "textBox_AgencyAddress";
@@ -129,6 +131,7 @@ namespace TravelExperts.Views
             // 
             // textBox_AgencyCity
             // 
+            textBox_AgencyCity.BorderStyle = BorderStyle.FixedSingle;
             textBox_AgencyCity.Location = new Point(200, 109);
             textBox_AgencyCity.Margin = new Padding(3, 2, 3, 2);
             textBox_AgencyCity.Name = "textBox_AgencyCity";
@@ -138,6 +141,7 @@ namespace TravelExperts.Views
             // 
             // textBox_AgencyProvince
             // 
+            textBox_AgencyProvince.BorderStyle = BorderStyle.FixedSingle;
             textBox_AgencyProvince.Location = new Point(382, 109);
             textBox_AgencyProvince.Margin = new Padding(3, 2, 3, 2);
             textBox_AgencyProvince.Name = "textBox_AgencyProvince";
@@ -147,6 +151,7 @@ namespace TravelExperts.Views
             // 
             // textBox_AgencyBusPhone
             // 
+            textBox_AgencyBusPhone.BorderStyle = BorderStyle.FixedSingle;
             textBox_AgencyBusPhone.Location = new Point(382, 156);
             textBox_AgencyBusPhone.Margin = new Padding(3, 2, 3, 2);
             textBox_AgencyBusPhone.Name = "textBox_AgencyBusPhone";
@@ -156,6 +161,7 @@ namespace TravelExperts.Views
             // 
             // textBox_AgencyCountry
             // 
+            textBox_AgencyCountry.BorderStyle = BorderStyle.FixedSingle;
             textBox_AgencyCountry.Location = new Point(200, 156);
             textBox_AgencyCountry.Margin = new Padding(3, 2, 3, 2);
             textBox_AgencyCountry.Name = "textBox_AgencyCountry";
@@ -165,6 +171,7 @@ namespace TravelExperts.Views
             // 
             // textBox_AgencyPostal
             // 
+            textBox_AgencyPostal.BorderStyle = BorderStyle.FixedSingle;
             textBox_AgencyPostal.Location = new Point(21, 156);
             textBox_AgencyPostal.Margin = new Padding(3, 2, 3, 2);
             textBox_AgencyPostal.Name = "textBox_AgencyPostal";
@@ -174,7 +181,8 @@ namespace TravelExperts.Views
             // 
             // textBox_AgentPosition
             // 
-            textBox_AgentPosition.Location = new Point(200, 466);
+            textBox_AgentPosition.BorderStyle = BorderStyle.FixedSingle;
+            textBox_AgentPosition.Location = new Point(200, 510);
             textBox_AgentPosition.Margin = new Padding(3, 2, 3, 2);
             textBox_AgentPosition.Name = "textBox_AgentPosition";
             textBox_AgentPosition.ReadOnly = true;
@@ -183,16 +191,18 @@ namespace TravelExperts.Views
             // 
             // textBox_AgentEmail
             // 
-            textBox_AgentEmail.Location = new Point(21, 522);
+            textBox_AgentEmail.BorderStyle = BorderStyle.FixedSingle;
+            textBox_AgentEmail.Location = new Point(21, 566);
             textBox_AgentEmail.Margin = new Padding(3, 2, 3, 2);
             textBox_AgentEmail.Name = "textBox_AgentEmail";
             textBox_AgentEmail.ReadOnly = true;
-            textBox_AgentEmail.Size = new Size(184, 23);
+            textBox_AgentEmail.Size = new Size(191, 23);
             textBox_AgentEmail.TabIndex = 16;
             // 
             // textBox_AgentBussPhone
             // 
-            textBox_AgentBussPhone.Location = new Point(21, 468);
+            textBox_AgentBussPhone.BorderStyle = BorderStyle.FixedSingle;
+            textBox_AgentBussPhone.Location = new Point(21, 512);
             textBox_AgentBussPhone.Margin = new Padding(3, 2, 3, 2);
             textBox_AgentBussPhone.Name = "textBox_AgentBussPhone";
             textBox_AgentBussPhone.ReadOnly = true;
@@ -201,7 +211,8 @@ namespace TravelExperts.Views
             // 
             // textBox_AgentLName
             // 
-            textBox_AgentLName.Location = new Point(382, 422);
+            textBox_AgentLName.BorderStyle = BorderStyle.FixedSingle;
+            textBox_AgentLName.Location = new Point(382, 466);
             textBox_AgentLName.Margin = new Padding(3, 2, 3, 2);
             textBox_AgentLName.Name = "textBox_AgentLName";
             textBox_AgentLName.ReadOnly = true;
@@ -210,7 +221,8 @@ namespace TravelExperts.Views
             // 
             // textBox_AgentMInitial
             // 
-            textBox_AgentMInitial.Location = new Point(200, 422);
+            textBox_AgentMInitial.BorderStyle = BorderStyle.FixedSingle;
+            textBox_AgentMInitial.Location = new Point(200, 466);
             textBox_AgentMInitial.Margin = new Padding(3, 2, 3, 2);
             textBox_AgentMInitial.Name = "textBox_AgentMInitial";
             textBox_AgentMInitial.ReadOnly = true;
@@ -219,7 +231,8 @@ namespace TravelExperts.Views
             // 
             // textBox_AgentFName
             // 
-            textBox_AgentFName.Location = new Point(21, 422);
+            textBox_AgentFName.BorderStyle = BorderStyle.FixedSingle;
+            textBox_AgentFName.Location = new Point(21, 466);
             textBox_AgentFName.Margin = new Padding(3, 2, 3, 2);
             textBox_AgentFName.Name = "textBox_AgentFName";
             textBox_AgentFName.ReadOnly = true;
@@ -228,6 +241,11 @@ namespace TravelExperts.Views
             // 
             // button_AgencyAdd
             // 
+            button_AgencyAdd.Cursor = Cursors.Hand;
+            button_AgencyAdd.FlatAppearance.BorderColor = Color.Black;
+            button_AgencyAdd.FlatAppearance.MouseDownBackColor = Color.Lime;
+            button_AgencyAdd.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 255, 192);
+            button_AgencyAdd.FlatStyle = FlatStyle.Flat;
             button_AgencyAdd.Location = new Point(21, 231);
             button_AgencyAdd.Margin = new Padding(3, 2, 3, 2);
             button_AgencyAdd.Name = "button_AgencyAdd";
@@ -235,9 +253,14 @@ namespace TravelExperts.Views
             button_AgencyAdd.TabIndex = 18;
             button_AgencyAdd.Text = "Add Agency";
             button_AgencyAdd.UseVisualStyleBackColor = true;
+            button_AgencyAdd.Click += button_AgencyAdd_Click;
             // 
             // button_AgencyEdit
             // 
+            button_AgencyEdit.Cursor = Cursors.Hand;
+            button_AgencyEdit.FlatAppearance.MouseDownBackColor = Color.FromArgb(255, 128, 0);
+            button_AgencyEdit.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 224, 192);
+            button_AgencyEdit.FlatStyle = FlatStyle.Flat;
             button_AgencyEdit.Location = new Point(200, 231);
             button_AgencyEdit.Margin = new Padding(3, 2, 3, 2);
             button_AgencyEdit.Name = "button_AgencyEdit";
@@ -245,9 +268,14 @@ namespace TravelExperts.Views
             button_AgencyEdit.TabIndex = 19;
             button_AgencyEdit.Text = "Edit Agency";
             button_AgencyEdit.UseVisualStyleBackColor = true;
+            button_AgencyEdit.Click += button_AgencyEdit_Click;
             // 
             // button_AgencyDelete
             // 
+            button_AgencyDelete.Cursor = Cursors.Hand;
+            button_AgencyDelete.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 0, 0);
+            button_AgencyDelete.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 192, 192);
+            button_AgencyDelete.FlatStyle = FlatStyle.Flat;
             button_AgencyDelete.Location = new Point(382, 231);
             button_AgencyDelete.Margin = new Padding(3, 2, 3, 2);
             button_AgencyDelete.Name = "button_AgencyDelete";
@@ -255,49 +283,66 @@ namespace TravelExperts.Views
             button_AgencyDelete.TabIndex = 20;
             button_AgencyDelete.Text = "Delete Agency";
             button_AgencyDelete.UseVisualStyleBackColor = true;
+            button_AgencyDelete.Click += button_AgencyDelete_Click;
             // 
             // button_AgentDelete
             // 
-            button_AgentDelete.Location = new Point(383, 559);
+            button_AgentDelete.Cursor = Cursors.Hand;
+            button_AgentDelete.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 0, 0);
+            button_AgentDelete.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 192, 192);
+            button_AgentDelete.FlatStyle = FlatStyle.Flat;
+            button_AgentDelete.Location = new Point(383, 603);
             button_AgentDelete.Margin = new Padding(3, 2, 3, 2);
             button_AgentDelete.Name = "button_AgentDelete";
             button_AgentDelete.Size = new Size(152, 36);
             button_AgentDelete.TabIndex = 23;
             button_AgentDelete.Text = "Delete Agent";
             button_AgentDelete.UseVisualStyleBackColor = true;
+            button_AgentDelete.Click += button_AgentDelete_Click;
             // 
             // button_AgentEdit
             // 
-            button_AgentEdit.Location = new Point(201, 559);
+            button_AgentEdit.Cursor = Cursors.Hand;
+            button_AgentEdit.FlatAppearance.MouseDownBackColor = Color.FromArgb(255, 128, 0);
+            button_AgentEdit.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 224, 192);
+            button_AgentEdit.FlatStyle = FlatStyle.Flat;
+            button_AgentEdit.Location = new Point(201, 603);
             button_AgentEdit.Margin = new Padding(3, 2, 3, 2);
             button_AgentEdit.Name = "button_AgentEdit";
             button_AgentEdit.Size = new Size(152, 36);
             button_AgentEdit.TabIndex = 22;
             button_AgentEdit.Text = "Edit Agent";
             button_AgentEdit.UseVisualStyleBackColor = true;
+            button_AgentEdit.Click += button_AgentEdit_Click;
             // 
             // button_AgentAdd
             // 
-            button_AgentAdd.Location = new Point(22, 559);
+            button_AgentAdd.Cursor = Cursors.Hand;
+            button_AgentAdd.FlatAppearance.MouseDownBackColor = Color.Lime;
+            button_AgentAdd.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 255, 192);
+            button_AgentAdd.FlatStyle = FlatStyle.Flat;
+            button_AgentAdd.Location = new Point(22, 603);
             button_AgentAdd.Margin = new Padding(3, 2, 3, 2);
             button_AgentAdd.Name = "button_AgentAdd";
             button_AgentAdd.Size = new Size(152, 36);
             button_AgentAdd.TabIndex = 21;
             button_AgentAdd.Text = "Add Agent";
             button_AgentAdd.UseVisualStyleBackColor = true;
+            button_AgentAdd.Click += button_AgentAdd_Click;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(314, 374);
+            label3.Font = new Font("Segoe UI", 9F, FontStyle.Underline, GraphicsUnit.Point, 0);
+            label3.Location = new Point(316, 424);
             label3.Name = "label3";
-            label3.Size = new Size(64, 15);
+            label3.Size = new Size(67, 15);
             label3.TabIndex = 28;
-            label3.Text = "Agency ID:";
+            label3.Text = "Agency ID :";
             // 
             // button_AgentForward
             // 
-            button_AgentForward.Location = new Point(74, 372);
+            button_AgentForward.Location = new Point(74, 416);
             button_AgentForward.Margin = new Padding(3, 2, 3, 2);
             button_AgentForward.Name = "button_AgentForward";
             button_AgentForward.Size = new Size(45, 24);
@@ -308,7 +353,7 @@ namespace TravelExperts.Views
             // 
             // button_AgentBack
             // 
-            button_AgentBack.Location = new Point(21, 371);
+            button_AgentBack.Location = new Point(21, 415);
             button_AgentBack.Margin = new Padding(3, 2, 3, 2);
             button_AgentBack.Name = "button_AgentBack";
             button_AgentBack.Size = new Size(47, 24);
@@ -321,7 +366,7 @@ namespace TravelExperts.Views
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Adobe Gothic Std B", 18F, FontStyle.Bold, GraphicsUnit.Point, 128);
-            label4.Location = new Point(22, 328);
+            label4.Location = new Point(22, 372);
             label4.Name = "label4";
             label4.Size = new Size(92, 30);
             label4.TabIndex = 24;
@@ -329,7 +374,7 @@ namespace TravelExperts.Views
             // 
             // textBox_AgentID
             // 
-            textBox_AgentID.Location = new Point(500, 373);
+            textBox_AgentID.Location = new Point(500, 417);
             textBox_AgentID.Margin = new Padding(3, 2, 3, 2);
             textBox_AgentID.Name = "textBox_AgentID";
             textBox_AgentID.ReadOnly = true;
@@ -340,11 +385,12 @@ namespace TravelExperts.Views
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(433, 374);
+            label5.Font = new Font("Segoe UI", 9F, FontStyle.Underline, GraphicsUnit.Point, 0);
+            label5.Location = new Point(436, 425);
             label5.Name = "label5";
-            label5.Size = new Size(56, 15);
+            label5.Size = new Size(59, 15);
             label5.TabIndex = 30;
-            label5.Text = "Agent ID:";
+            label5.Text = "Agent ID :";
             // 
             // label6
             // 
@@ -411,6 +457,7 @@ namespace TravelExperts.Views
             // 
             // textBox_AgencyFaxPhone
             // 
+            textBox_AgencyFaxPhone.BorderStyle = BorderStyle.FixedSingle;
             textBox_AgencyFaxPhone.Location = new Point(382, 196);
             textBox_AgencyFaxPhone.Margin = new Padding(3, 2, 3, 2);
             textBox_AgencyFaxPhone.Name = "textBox_AgencyFaxPhone";
@@ -421,7 +468,7 @@ namespace TravelExperts.Views
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(22, 404);
+            label13.Location = new Point(22, 448);
             label13.Name = "label13";
             label13.Size = new Size(64, 15);
             label13.TabIndex = 40;
@@ -430,7 +477,7 @@ namespace TravelExperts.Views
             // label14
             // 
             label14.AutoSize = true;
-            label14.Location = new Point(200, 405);
+            label14.Location = new Point(200, 449);
             label14.Name = "label14";
             label14.Size = new Size(76, 15);
             label14.TabIndex = 41;
@@ -439,7 +486,7 @@ namespace TravelExperts.Views
             // label15
             // 
             label15.AutoSize = true;
-            label15.Location = new Point(380, 406);
+            label15.Location = new Point(380, 450);
             label15.Name = "label15";
             label15.Size = new Size(63, 15);
             label15.TabIndex = 42;
@@ -448,7 +495,7 @@ namespace TravelExperts.Views
             // label16
             // 
             label16.AutoSize = true;
-            label16.Location = new Point(21, 451);
+            label16.Location = new Point(21, 495);
             label16.Name = "label16";
             label16.Size = new Size(92, 15);
             label16.TabIndex = 43;
@@ -457,7 +504,7 @@ namespace TravelExperts.Views
             // label17
             // 
             label17.AutoSize = true;
-            label17.Location = new Point(21, 505);
+            label17.Location = new Point(21, 549);
             label17.Name = "label17";
             label17.Size = new Size(36, 15);
             label17.TabIndex = 44;
@@ -466,7 +513,7 @@ namespace TravelExperts.Views
             // label18
             // 
             label18.AutoSize = true;
-            label18.Location = new Point(200, 451);
+            label18.Location = new Point(200, 495);
             label18.Name = "label18";
             label18.Size = new Size(50, 15);
             label18.TabIndex = 45;
@@ -475,7 +522,7 @@ namespace TravelExperts.Views
             // panel1
             // 
             panel1.BackColor = SystemColors.InfoText;
-            panel1.Location = new Point(0, 307);
+            panel1.Location = new Point(0, 333);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
             panel1.Size = new Size(590, 10);
@@ -483,7 +530,7 @@ namespace TravelExperts.Views
             // 
             // textBox_AgencyID2
             // 
-            textBox_AgencyID2.Location = new Point(389, 372);
+            textBox_AgencyID2.Location = new Point(389, 416);
             textBox_AgencyID2.Margin = new Padding(3, 2, 3, 2);
             textBox_AgencyID2.Name = "textBox_AgencyID2";
             textBox_AgencyID2.ReadOnly = true;
@@ -507,7 +554,7 @@ namespace TravelExperts.Views
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ScrollBar;
-            ClientSize = new Size(585, 635);
+            ClientSize = new Size(584, 701);
             Controls.Add(button_AgenciesForward);
             Controls.Add(textBox_AgencyID2);
             Controls.Add(panel1);
@@ -553,6 +600,7 @@ namespace TravelExperts.Views
             Controls.Add(label2);
             Controls.Add(button_AgenciesBack);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.Fixed3D;
             Margin = new Padding(3, 2, 3, 2);
             Name = "frmAdminGUI";
             Text = "Admin Dashboard";

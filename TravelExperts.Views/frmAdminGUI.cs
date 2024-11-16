@@ -32,6 +32,8 @@ namespace TravelExperts.Views
         }
 
         // ON LOAD METHODS
+        /*____________________________________________________________________________________________________________________________________________________________________ */
+
         private void LoadAgents()
         {
             //Grabs Agents from DB
@@ -80,8 +82,10 @@ namespace TravelExperts.Views
         }
 
 
-        // EVENT LISTENERS
 
+
+        // EVENT LISTENERS
+        /*____________________________________________________________________________________________________________________________________________________________________ */
 
         //Agency Arrow Navigation listeners
         private void button_AgenciesForward_Click(object sender, EventArgs e)
@@ -110,11 +114,54 @@ namespace TravelExperts.Views
         }
 
 
+        // Add/Modify/Delete Agency Buttons
+
+        private void button_AgencyAdd_Click(object sender, EventArgs e)
+        {
+            HandleAgencyAddition();
+        }
+
+
+        private void button_AgencyEdit_Click(object sender, EventArgs e)
+        {
+            HandleAgencyEdit();
+        }
+
+        private void button_AgencyDelete_Click(object sender, EventArgs e)
+        {
+            HandleAgencyDeletion();
+        }
+
+
+
+        // Add/Modify/Delete Agent Buttons
+        private void button_AgentAdd_Click(object sender, EventArgs e)
+        {
+            HandleAgentAddition();
+        }
+
+
+        private void button_AgentEdit_Click(object sender, EventArgs e)
+        {
+            HandleAgentEdit();
+        }
+
+
+
+        private void button_AgentDelete_Click(object sender, EventArgs e)
+        {
+            HandleAgentDeletion();
+        }
+
+
+
+
 
 
 
 
         // BUTTON LOGIC 
+        /*____________________________________________________________________________________________________________________________________________________________________ */
 
         //Logic involving the Navigation Arrows in the Agencies and Agents section.
         private void HandleAgenciesButtonForward()
@@ -203,7 +250,7 @@ namespace TravelExperts.Views
             }
 
             // Re-enable the forward button if we are not at the end of the list
-            button_AgentBack.Enabled = _agentsCount < agentsCount +1 ;
+            button_AgentBack.Enabled = _agentsCount < agentsCount + 1;
 
             if (agents.Count > 0)
             {
@@ -227,6 +274,7 @@ namespace TravelExperts.Views
             }
 
         }
+
 
         private void HandleAgentButtonBack()
         {
@@ -268,8 +316,101 @@ namespace TravelExperts.Views
                 {
                     textBox_AgentMInitial.Text = agents[_agentsCount].AgtMiddleInitial;
                 }
+
             }
+
         }
+
+
+        /// <summary>
+        /// Handle Agency Addition
+        /// </summary>
+        private static void HandleAgencyAddition()
+        {
+            frmAdminAgenciesManagement addForm = new frmAdminAgenciesManagement();
+
+            addForm.LabelTitle = "Add New Agency";
+            addForm.ActionFlag = "Addition";
+            addForm.ShowDialog();
+        }
+
+        /// <summary>
+        /// Handle Agency Edit - Populate texboxes in second form with values of corresponding textboxes in AdminGUI form.
+        /// </summary>
+        private void HandleAgencyEdit()
+        {
+            frmAdminAgenciesManagement addForm = new frmAdminAgenciesManagement();
+
+            addForm.ActionFlag = "Modify";
+            addForm.LabelTitle = "Modify Existing Agency";
+            addForm.AgencyID = textBox_AgencyID1.Text;
+            addForm.AgencyAddress = textBox_AgencyAddress.Text;
+            addForm.AgencyCity = textBox_AgencyCity.Text;
+            addForm.AgencyProvince = textBox_AgencyProvince.Text;
+            addForm.AgencyPostalCode = textBox_AgencyPostal.Text;
+            addForm.AgencyCountry = textBox_AgencyCountry.Text;
+            addForm.AgencyBusPhone = textBox_AgencyBusPhone.Text;
+            addForm.AgencyFax = textBox_AgencyFaxPhone.Text;
+
+            addForm.ShowDialog();
+
+        }
+
+        private void HandleAgencyDeletion()
+        {
+            frmAdminAgenciesManagement addForm = new frmAdminAgenciesManagement();
+
+            addForm = new frmAdminAgenciesManagement();
+            addForm.LabelTitle = "Delete Existing Agency";
+            addForm.ActionFlag = "Deletion";
+
+            addForm.ShowDialog();
+        }
+
+
+        /// <summary>
+        /// Handle Agent Addition
+        /// </summary>
+        private static void HandleAgentAddition()
+        {
+            frmAdminAgentsManagement addForm = new frmAdminAgentsManagement();
+
+            addForm.LabelTitle = "Add New Agent";
+            addForm.ActionFlag = "Addition";
+            addForm.ShowDialog();
+        }
+
+        /// <summary>
+        /// Handle clicking Agent Edit button - Populate texboxes in second form with values of corresponding textboxes in AdminGUI form.
+        /// </summary>
+        private void HandleAgentEdit()
+        {
+            frmAdminAgentsManagement addForm = new frmAdminAgentsManagement();
+
+            addForm.ActionFlag = "Modify";
+            addForm.LabelTitle = "Modify Existing Agent";
+            addForm.AgentID = textBox_AgentID.Text;
+            addForm.AgencyID = textBox_AgencyID2.Text;
+            addForm.AgentFirstName = textBox_AgentFName.Text;
+            addForm.AgentLastName = textBox_AgentLName.Text;
+            addForm.AgentMiddleInitial = textBox_AgentMInitial.Text;
+            addForm.AgentPhoneNumber = textBox_AgentBussPhone.Text;
+            addForm.AgentEmail = textBox_AgentEmail.Text;
+            addForm.AgentPosition = textBox_AgentPosition.Text;
+
+            addForm.ShowDialog();
+        }
+
+        private static void HandleAgentDeletion()
+        {
+            frmAdminAgentsManagement addForm = new frmAdminAgentsManagement();
+
+            addForm.LabelTitle = "Delete Existing Agent";
+            addForm.ActionFlag = "Deletion";
+            addForm.ShowDialog();
+        }
+
+
     }
 
 }
