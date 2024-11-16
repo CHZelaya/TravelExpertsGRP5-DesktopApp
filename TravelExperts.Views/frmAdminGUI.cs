@@ -20,14 +20,9 @@ namespace TravelExperts.Views
 
         private void FrmAdminGUI_Load(object sender, EventArgs e)
         {
-
-            //Clear listbox on initial load
-
+            //Load Agency and Agent data on load.
             LoadAgencies();
             LoadAgents();
-
-
-
 
         }
 
@@ -37,7 +32,8 @@ namespace TravelExperts.Views
         private void LoadAgents()
         {
             //Grabs Agents from DB
-            var agents = _agentsAndAgencies.GetAgents();
+            var agents = _agentsAndAgencies.GetActiveAgents();
+     
 
             if (agents.Count > 0)
             {
@@ -235,7 +231,7 @@ namespace TravelExperts.Views
         {
 
 
-            var agents = _agentsAndAgencies.GetAgents();
+            var agents = _agentsAndAgencies.GetActiveAgents();
             var agentsCount = agents.Count;
 
             //Prevent button from going past the length of agents
@@ -281,7 +277,7 @@ namespace TravelExperts.Views
 
 
             //Grabs Agents from DB
-            var agents = _agentsAndAgencies.GetAgents();
+            var agents = _agentsAndAgencies.GetActiveAgents();
             var agentsCount = agents.Count;
 
             if (_agentsCount > 0)

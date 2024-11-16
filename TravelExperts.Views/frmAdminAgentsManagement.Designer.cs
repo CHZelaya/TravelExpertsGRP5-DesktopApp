@@ -33,7 +33,7 @@
             textBox_AgencyID = new TextBox();
             label8 = new Label();
             textBox_AgentID = new TextBox();
-            label7 = new Label();
+            label_AgentID = new Label();
             button_Cancel = new Button();
             button_OK = new Button();
             textBox_AgentPosition = new TextBox();
@@ -66,7 +66,7 @@
             groupBox1.Controls.Add(textBox_AgencyID);
             groupBox1.Controls.Add(label8);
             groupBox1.Controls.Add(textBox_AgentID);
-            groupBox1.Controls.Add(label7);
+            groupBox1.Controls.Add(label_AgentID);
             groupBox1.Controls.Add(button_Cancel);
             groupBox1.Controls.Add(button_OK);
             groupBox1.Controls.Add(textBox_AgentPosition);
@@ -90,7 +90,7 @@
             // 
             // textBox_AgencyID
             // 
-            textBox_AgencyID.Location = new Point(244, 26);
+            textBox_AgencyID.Location = new Point(329, 21);
             textBox_AgencyID.Name = "textBox_AgencyID";
             textBox_AgencyID.Size = new Size(26, 23);
             textBox_AgencyID.TabIndex = 16;
@@ -98,7 +98,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(164, 34);
+            label8.Location = new Point(249, 29);
             label8.Name = "label8";
             label8.Size = new Size(67, 15);
             label8.TabIndex = 15;
@@ -111,14 +111,14 @@
             textBox_AgentID.Size = new Size(26, 23);
             textBox_AgentID.TabIndex = 14;
             // 
-            // label7
+            // label_AgentID
             // 
-            label7.AutoSize = true;
-            label7.Location = new Point(34, 34);
-            label7.Name = "label7";
-            label7.Size = new Size(59, 15);
-            label7.TabIndex = 13;
-            label7.Text = "Agent ID :";
+            label_AgentID.AutoSize = true;
+            label_AgentID.Location = new Point(34, 34);
+            label_AgentID.Name = "label_AgentID";
+            label_AgentID.Size = new Size(59, 15);
+            label_AgentID.TabIndex = 13;
+            label_AgentID.Text = "Agent ID :";
             // 
             // button_Cancel
             // 
@@ -143,6 +143,7 @@
             button_OK.TabIndex = 2;
             button_OK.Text = "OK";
             button_OK.UseVisualStyleBackColor = true;
+            button_OK.Click += button_OK_Click;
             // 
             // textBox_AgentPosition
             // 
@@ -250,6 +251,7 @@
             Controls.Add(label_AgentsTitle);
             Name = "frmAdminAgentsManagement";
             Text = "Admin Agents Management";
+            Load += frmAdminAgentsManagement_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ResumeLayout(false);
@@ -275,7 +277,7 @@
         private Button button_Cancel;
         private Button button_OK;
         private TextBox textBox_AgentID;
-        private Label label7;
+        private Label label_AgentID;
         private TextBox textBox_AgencyID;
         private Label label8;
     }

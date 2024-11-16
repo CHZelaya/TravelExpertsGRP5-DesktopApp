@@ -1,4 +1,5 @@
-﻿namespace TravelExperts.Views
+﻿
+namespace TravelExperts.Views
 {
     partial class frmAdminAgenciesManagement
     {
@@ -29,6 +30,8 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            textBox_AgencyID = new TextBox();
+            label8 = new Label();
             textBox_AgencyFaxPhone = new TextBox();
             label7 = new Label();
             button_Cancel = new Button();
@@ -46,8 +49,6 @@
             label2 = new Label();
             label1 = new Label();
             label_AgenciesTitle = new Label();
-            textBox_AgencyID = new TextBox();
-            label8 = new Label();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -77,6 +78,22 @@
             groupBox1.TabIndex = 3;
             groupBox1.TabStop = false;
             groupBox1.Text = "Agency Details";
+            // 
+            // textBox_AgencyID
+            // 
+            textBox_AgencyID.Location = new Point(425, 34);
+            textBox_AgencyID.Name = "textBox_AgencyID";
+            textBox_AgencyID.Size = new Size(26, 23);
+            textBox_AgencyID.TabIndex = 18;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(345, 42);
+            label8.Name = "label8";
+            label8.Size = new Size(67, 15);
+            label8.TabIndex = 17;
+            label8.Text = "Agency ID :";
             // 
             // textBox_AgencyFaxPhone
             // 
@@ -224,22 +241,6 @@
             label_AgenciesTitle.TabIndex = 2;
             label_AgenciesTitle.Text = "Title";
             // 
-            // textBox_AgencyID
-            // 
-            textBox_AgencyID.Location = new Point(425, 34);
-            textBox_AgencyID.Name = "textBox_AgencyID";
-            textBox_AgencyID.Size = new Size(26, 23);
-            textBox_AgencyID.TabIndex = 18;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(345, 42);
-            label8.Name = "label8";
-            label8.Size = new Size(67, 15);
-            label8.TabIndex = 17;
-            label8.Text = "Agency ID :";
-            // 
             // frmAdminAgenciesManagement
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -250,11 +251,14 @@
             Controls.Add(label_AgenciesTitle);
             Name = "frmAdminAgenciesManagement";
             Text = "Admin Agencies Management";
+            Load += this.frmAdminAgenciesManagement_Load_1;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
+
+
 
         #endregion
 
