@@ -5,10 +5,10 @@
 ### Form 1: Travel Packages Management
 #### Assigned to : Daryl
 (✅ - Copy/paste the checkmark as you finish tasks) 
-- ❌ Implement CRUD functionality for travel packages.
-- ❌ Create a user-friendly interface for adding, editing, and deleting packages.
-- ❌ Add functionality to select products from a product list to associate with packages.
-- ❌ Implement search functionality to filter displayed packages.
+- ✅ Implement CRUD functionality for travel packages.
+- ✅ Create a user-friendly interface for adding, editing, and deleting packages.
+- ✅ Add functionality to select products from a product list to associate with packages.
+- ✅ Implement search functionality to filter displayed packages.
 
 ### Form 2: Agents and Agencies Management
 #### Assigned to : Carlos
