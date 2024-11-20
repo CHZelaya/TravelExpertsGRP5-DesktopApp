@@ -62,6 +62,7 @@
             txt_PkgName.Enabled = false;
             txt_PkgName.Location = new Point(106, 20);
             txt_PkgName.Name = "txt_PkgName";
+            txt_PkgName.ReadOnly = true;
             txt_PkgName.Size = new Size(380, 23);
             txt_PkgName.TabIndex = 1;
             // 
@@ -79,6 +80,7 @@
             txt_PkgDesc.Enabled = false;
             txt_PkgDesc.Location = new Point(106, 57);
             txt_PkgDesc.Name = "txt_PkgDesc";
+            txt_PkgDesc.ReadOnly = true;
             txt_PkgDesc.Size = new Size(380, 23);
             txt_PkgDesc.TabIndex = 3;
             // 
@@ -96,6 +98,7 @@
             txt_StartDate.Enabled = false;
             txt_StartDate.Location = new Point(125, 95);
             txt_StartDate.Name = "txt_StartDate";
+            txt_StartDate.ReadOnly = true;
             txt_StartDate.Size = new Size(361, 23);
             txt_StartDate.TabIndex = 5;
             // 
@@ -113,6 +116,7 @@
             txt_EndDate.Enabled = false;
             txt_EndDate.Location = new Point(120, 128);
             txt_EndDate.Name = "txt_EndDate";
+            txt_EndDate.ReadOnly = true;
             txt_EndDate.Size = new Size(366, 23);
             txt_EndDate.TabIndex = 7;
             // 
@@ -130,6 +134,7 @@
             txt_BasePrice.Enabled = false;
             txt_BasePrice.Location = new Point(127, 163);
             txt_BasePrice.Name = "txt_BasePrice";
+            txt_BasePrice.ReadOnly = true;
             txt_BasePrice.Size = new Size(359, 23);
             txt_BasePrice.TabIndex = 9;
             // 
@@ -147,6 +152,7 @@
             txt_AgencyCommission.Enabled = false;
             txt_AgencyCommission.Location = new Point(184, 197);
             txt_AgencyCommission.Name = "txt_AgencyCommission";
+            txt_AgencyCommission.ReadOnly = true;
             txt_AgencyCommission.Size = new Size(302, 23);
             txt_AgencyCommission.TabIndex = 11;
             // 
