@@ -73,7 +73,7 @@ namespace TravelExperts.Views
             travelServicesLB.Items.Clear();
             supplierLB.Items.Clear();
 
-            
+
             //if not empty or not null search
             if (!string.IsNullOrEmpty(searchTB.Text))
             {
@@ -85,7 +85,7 @@ namespace TravelExperts.Views
                 //https://learn.microsoft.com/en-us/dotnet/api/system.linq.enumerable.where?view=net-8.0
                 string[] searchedProdNames = products
                     .Where(p => p.ProdName.ToLower().Contains(searchLowerCase))
-                    .Select(p => p.ProdName).ToArray() ;
+                    .Select(p => p.ProdName).ToArray();
 
                 string[] searchedSupNames = suppliers
                     .Where(s => s.SupName.ToLower().Contains(searchLowerCase))
@@ -106,6 +106,16 @@ namespace TravelExperts.Views
                     supplierLB.Items.Add(it.SupName);
                 }
             }
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
