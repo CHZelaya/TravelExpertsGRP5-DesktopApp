@@ -159,14 +159,20 @@
             userControl_Agencies.CurrentActionFlag = BaseUserControl.ActionFlag.AgencyControl;
         }
 
-        private static void HandleAgentAddition()
+        private void HandleAgentAddition()
         {
             frmAdminAgentsManagement addForm = new frmAdminAgentsManagement();
+            var agentsUserControl = (AgentsUserControl)this.Controls["agentsUserControl"];
 
             addForm.LabelTitle = "Add New Agent";
             addForm.ActionFlag = "Addition";
-            addForm.ShowDialog();
+            // Show the form as a dialog
+            if (addForm.ShowDialog() == DialogResult.OK)
+            {
+                agentsUserControl.RefreshAgents(); // Change to instance method call
+            }
         }
+        
 
         private void HandleAgentEdit()
         {
