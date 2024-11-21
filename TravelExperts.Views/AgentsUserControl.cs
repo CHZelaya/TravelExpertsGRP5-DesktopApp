@@ -15,6 +15,7 @@ namespace TravelExperts.Views
     public partial class AgentsUserControl : BaseUserControl
     {
         private AgentsAndAgenciesControllers _agentsAndAgencies;
+        private BindingList<Agent> _agentsBindingList;
 
         public AgentsUserControl()
         {
@@ -27,10 +28,15 @@ namespace TravelExperts.Views
 
         private void LoadAgents()
         {
-            var agents = _agentsAndAgencies.GetActiveAgents();
+            var agents = new BindingList<Agent>(_agentsAndAgencies.GetActiveAgents());
             dataGridView_Base.DataSource = agents;
+            _agentsBindingList = agents; // Store the binding list for later use
             CustomizeDataGridView();
-            
+        }
+
+        public void RefreshAgents()
+        {
+            LoadAgents();
         }
 
         //EventListeners for buttons

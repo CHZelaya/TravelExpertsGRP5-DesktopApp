@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -31,9 +32,7 @@ namespace TravelExperts.Views
         public string LabelTitle { set { label_AgentsTitle.Text = value; } }
 
         // Passing Agent information from AdminGUI form and populating textboxes
-
-        public string AgentID { set { textBox_AgentID.Text = value; } }
-        public string AgencyID { set { textBox_AgencyID.Text = value; } }
+        public int AgentID { get; set; }
         public string AgentFirstName { set { textBox_AgentFName.Text = value; } }
 
         public string AgentMiddleInitial { set { textBox_AgentMInitial.Text = value; } }
@@ -46,31 +45,12 @@ namespace TravelExperts.Views
 
         public string AgentPosition { set { textBox_AgentPosition.Text = value; } }
 
+        //public bool AgentStatus { set { text} }
+
 
         //ON LOAD
         /*____________________________________________________________________________________________________________________________________________________________________ */
 
-        private void frmAdminAgentsManagement_Load(object sender, EventArgs e)
-        {
-            if (ActionFlag == "Addition")
-            {
-                label_AgentID.Text = "AgentID is Auto-Generated"; //Show AgentID warning
-                textBox_AgentID.Visible = false;
-                textBox_AgentID.Enabled = false;    // Disable Textbox
-            }
-            else if (ActionFlag == "Modify")
-            {
-                label_AgentID.Text = "AgentID :"; //Show AgentID warning
-                textBox_AgentID.Enabled = true;
-                textBox_AgentID.Visible = true;
-            }
-            else if (ActionFlag == "Deletion")
-            {
-                label_AgentID.Text = "AgentID :"; //Show AgentID warning
-                textBox_AgentID.Enabled = true;
-                textBox_AgentID.Visible = true;
-            }
-        }
 
         private void button_OK_Click(object? sender, EventArgs e)
         {
@@ -90,25 +70,43 @@ namespace TravelExperts.Views
 
         private void HandleAgentDeletion()
         {
-            label_AgentID.Text = "AgentID :"; //Show AgentID warning
-            textBox_AgentID.Enabled = true;
-            textBox_AgentID.Visible = true;
+
             throw new NotImplementedException();
         }
 
         private void HandleAgentModify()
         {
-            label_AgentID.Text = "AgentID :"; //Show AgentID warning
-            textBox_AgentID.Enabled = true;
-            textBox_AgentID.Visible = true;
-            throw new NotImplementedException();
+
+            Agent agentToUpdate = new Agent
+            {
+                AgentId = AgentID,
+                AgtFirstName = textBox_AgentFName.Text,
+                AgtMiddleInitial = textBox_AgentMInitial.Text,
+                AgtLastName = textBox_AgentLName.Text,
+                AgtBusPhone = textBox_AgentBussPhone.Text,
+                AgtEmail = textBox_AgentEmail.Text,
+                AgtPosition = textBox_AgentPosition.Text,
+                AgentStatus = true
+
+            };
+
+            try
+            {
+                _agentsAndAgencies.UpdateAgent(agentToUpdate);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error Adding Agent: {ex.Message}");
+
+
+            }
+
         }
 
         private void HandleAgentAddtion()
         {
-            label_AgentID.Text = "AgentID is Auto-Generated"; //Show AgentID warning
-            textBox_AgentID.Visible = false;
-            textBox_AgentID.Enabled = false;    // Disable Textbox
+
             Agent agentToAdd = new Agent
             {
                 AgtFirstName = textBox_AgentFName.Text,
@@ -117,7 +115,6 @@ namespace TravelExperts.Views
                 AgtBusPhone = textBox_AgentBussPhone.Text,
                 AgtEmail = textBox_AgentEmail.Text,
                 AgtPosition = textBox_AgentPosition.Text,
-                AgencyId = int.TryParse(textBox_AgencyID.Text, out int agencyId) ? agencyId : (int?)null,
                 AgentStatus = true
 
             };
@@ -125,13 +122,17 @@ namespace TravelExperts.Views
             try
             {
                 _agentsAndAgencies.AddAgent(agentToAdd);
+                DialogResult = DialogResult.OK;
+                this.Close();
 
+            }
+            catch (DbUpdateException dbEx)
+            {
+                MessageBox.Show($"Database error while adding agent: {dbEx.Message}");
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error Adding Agent: {ex.Message}");
-
-
             }
         }
 

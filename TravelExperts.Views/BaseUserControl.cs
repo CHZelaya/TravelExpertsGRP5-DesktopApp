@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using TravelExperts.Controllers;
+﻿using System.Windows.Forms;
 
 namespace TravelExperts.Views
 {
@@ -19,9 +10,9 @@ namespace TravelExperts.Views
         protected DataGridView dataGridView_Base;
         protected TextBox textBox_Base1;
 
-        //Logic to set the flag for the MainForm
-        // This will allow the Buttons shared between AgentControl and AgencyControl to know which CRUD operation to perform.
-        public enum ActionFlag
+    //Logic to set the flag for the MainForm
+    // This will allow the Buttons shared between AgentControl and AgencyControl to know which CRUD operation to perform.
+    public enum ActionFlag
         {
             None,
             AgentControl,
@@ -34,16 +25,6 @@ namespace TravelExperts.Views
             get { return currentActionFlag; }
             set { currentActionFlag = value; }
         }
-
-        // Event Handler properties
-        public event EventHandler AddButtonClicked;
-        public event EventHandler ModifyButtonClicked;
-        public event EventHandler DeleteButtonClicked;
-
-        //Button properties
-        protected Button button_Add;
-        protected Button button_Modify;
-        protected Button button_Delete;
 
         public BaseUserControl()
         {
@@ -107,27 +88,9 @@ namespace TravelExperts.Views
             //Textboxes
             textBox_Base1 = CreateTextBox("Filter Search");
             tableLayoutPanel.Controls.Add(textBox_Base1, 0, 1);
-
-
-
-            //Buttons
-            button_Add = new Button { Text = "Add", BackColor = Color.Gray, Dock = DockStyle.Fill };
-            button_Modify = new Button { Text = "Modify", BackColor = Color.Gray, Dock = DockStyle.Fill };
-            button_Delete = new Button { Text = "Delete", BackColor = Color.Gray, Dock = DockStyle.Fill };
-
-            button_Add.Click += Button_Add_Click;
-            button_Modify.Click += Button_Modify_Click;
-            button_Delete.Click += Button_Delete_Click;
-
-            //Eventhandlers for styling
-            StylingButtonEventHandler(button_Add, Color.LightGreen);
-            StylingButtonEventHandler(button_Modify, Color.Yellow);
-            StylingButtonEventHandler(button_Delete, Color.Red);
-
-            tableLayoutPanel.Controls.Add(button_Add, 0, 2);
-            tableLayoutPanel.Controls.Add(button_Modify, 0, 3);
-            tableLayoutPanel.Controls.Add(button_Delete, 0, 4);
         }
+
+
 
 
         private TextBox CreateTextBox(string placeholderText)
@@ -136,37 +99,31 @@ namespace TravelExperts.Views
         }
 
 
-
-
-
-        // Event Handlers
-        private void StylingButtonEventHandler(Button button, Color baseColor)
+        // Method to get selected row data
+        public (int agentId, string firstName, string lastName, string middleInitial, string phoneNumber, string email, string position, bool isActive) GetSelectedRowData()
         {
-            Color originalColor = Color.Gray;
+            if (dataGridView_Base.SelectedRows.Count > 0)
+            {
+                var selectedRow = dataGridView_Base.SelectedRows[0];
 
-            button.BackColor = baseColor;
+                // Check if the required cells are not null
+                if (selectedRow.Cells["AgentId"].Value == null)
+                    throw new InvalidOperationException("AgentId is null.");
 
-            button.MouseEnter += (s, e) => button.BackColor = ControlPaint.Light(baseColor);
-            button.MouseLeave += (s, e) => button.BackColor = originalColor;
-            button.MouseDown += (s, e) => button.BackColor = ControlPaint.Dark(baseColor);
-            button.MouseUp += (s, e)  => button.BackColor = ControlPaint.Light(baseColor);
+                return (
+                    agentId: Convert.ToInt32(selectedRow.Cells["AgentId"].Value),
+                    firstName: selectedRow.Cells["AgtFirstName"].Value?.ToString() ?? string.Empty,
+                    middleInitial: selectedRow.Cells["AgtMiddleInitial"].Value?.ToString() ?? string.Empty,
+                    lastName: selectedRow.Cells["AgtLastName"].Value?.ToString() ?? string.Empty,
+                    phoneNumber: selectedRow.Cells["AgtBusPhone"].Value?.ToString() ?? string.Empty,
+                    email: selectedRow.Cells["AgtEmail"].Value?.ToString() ?? string.Empty,
+                    position: selectedRow.Cells["AgtPosition"].Value?.ToString() ?? string.Empty,
+                    isActive: Convert.ToBoolean(selectedRow.Cells["AgentStatus"].Value ?? false) // Default to false if null
+                );
+            }
+            throw new InvalidOperationException("No row selected.");
         }
 
-        private void Button_Delete_Click(object? sender, EventArgs e)
-        {
-            
-            DeleteButtonClicked?.Invoke(this, EventArgs.Empty);
-        }
-
-        private void Button_Modify_Click(object? sender, EventArgs e)
-        {
-            ModifyButtonClicked?.Invoke(this, EventArgs.Empty);
-        }
-
-        private void Button_Add_Click(object? sender, EventArgs e)
-        {
-            AddButtonClicked?.Invoke(this, EventArgs.Empty);
-        }
 
     }
 }
