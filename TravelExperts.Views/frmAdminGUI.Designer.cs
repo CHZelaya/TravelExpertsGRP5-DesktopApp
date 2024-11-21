@@ -31,6 +31,7 @@ namespace TravelExperts.Views
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             label1 = new Label();
             button_AgenciesBack = new Button();
             label2 = new Label();
@@ -41,24 +42,9 @@ namespace TravelExperts.Views
             textBox_AgencyBusPhone = new TextBox();
             textBox_AgencyCountry = new TextBox();
             textBox_AgencyPostal = new TextBox();
-            textBox_AgentPosition = new TextBox();
-            textBox_AgentEmail = new TextBox();
-            textBox_AgentBussPhone = new TextBox();
-            textBox_AgentLName = new TextBox();
-            textBox_AgentMInitial = new TextBox();
-            textBox_AgentFName = new TextBox();
             button_AgencyAdd = new Button();
             button_AgencyEdit = new Button();
             button_AgencyDelete = new Button();
-            button_AgentDelete = new Button();
-            button_AgentEdit = new Button();
-            button_AgentAdd = new Button();
-            label3 = new Label();
-            button_AgentForward = new Button();
-            button_AgentBack = new Button();
-            label4 = new Label();
-            textBox_AgentID = new TextBox();
-            label5 = new Label();
             label6 = new Label();
             label7 = new Label();
             label8 = new Label();
@@ -67,15 +53,25 @@ namespace TravelExperts.Views
             label11 = new Label();
             label12 = new Label();
             textBox_AgencyFaxPhone = new TextBox();
-            label13 = new Label();
-            label14 = new Label();
-            label15 = new Label();
-            label16 = new Label();
-            label17 = new Label();
-            label18 = new Label();
             panel1 = new Panel();
-            textBox_AgencyID2 = new TextBox();
             button_AgenciesForward = new Button();
+            dataGridView1 = new DataGridView();
+            agentIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            agtFirstNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            agtMiddleInitialDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            agtLastNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            agtBusPhoneDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            agtEmailDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            agtPositionDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            agencyIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            agencyDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            customersDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            agentStatusDataGridViewCheckBoxColumn = new DataGridViewCheckBoxColumn();
+            agentBindingSource = new BindingSource(components);
+            agentsAndAgenciesControllersBindingSource = new BindingSource(components);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)agentBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)agentsAndAgenciesControllersBindingSource).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -179,66 +175,6 @@ namespace TravelExperts.Views
             textBox_AgencyPostal.Size = new Size(153, 23);
             textBox_AgencyPostal.TabIndex = 9;
             // 
-            // textBox_AgentPosition
-            // 
-            textBox_AgentPosition.BorderStyle = BorderStyle.FixedSingle;
-            textBox_AgentPosition.Location = new Point(200, 510);
-            textBox_AgentPosition.Margin = new Padding(3, 2, 3, 2);
-            textBox_AgentPosition.Name = "textBox_AgentPosition";
-            textBox_AgentPosition.ReadOnly = true;
-            textBox_AgentPosition.Size = new Size(153, 23);
-            textBox_AgentPosition.TabIndex = 17;
-            // 
-            // textBox_AgentEmail
-            // 
-            textBox_AgentEmail.BorderStyle = BorderStyle.FixedSingle;
-            textBox_AgentEmail.Location = new Point(21, 566);
-            textBox_AgentEmail.Margin = new Padding(3, 2, 3, 2);
-            textBox_AgentEmail.Name = "textBox_AgentEmail";
-            textBox_AgentEmail.ReadOnly = true;
-            textBox_AgentEmail.Size = new Size(191, 23);
-            textBox_AgentEmail.TabIndex = 16;
-            // 
-            // textBox_AgentBussPhone
-            // 
-            textBox_AgentBussPhone.BorderStyle = BorderStyle.FixedSingle;
-            textBox_AgentBussPhone.Location = new Point(21, 512);
-            textBox_AgentBussPhone.Margin = new Padding(3, 2, 3, 2);
-            textBox_AgentBussPhone.Name = "textBox_AgentBussPhone";
-            textBox_AgentBussPhone.ReadOnly = true;
-            textBox_AgentBussPhone.Size = new Size(153, 23);
-            textBox_AgentBussPhone.TabIndex = 15;
-            // 
-            // textBox_AgentLName
-            // 
-            textBox_AgentLName.BorderStyle = BorderStyle.FixedSingle;
-            textBox_AgentLName.Location = new Point(382, 466);
-            textBox_AgentLName.Margin = new Padding(3, 2, 3, 2);
-            textBox_AgentLName.Name = "textBox_AgentLName";
-            textBox_AgentLName.ReadOnly = true;
-            textBox_AgentLName.Size = new Size(153, 23);
-            textBox_AgentLName.TabIndex = 14;
-            // 
-            // textBox_AgentMInitial
-            // 
-            textBox_AgentMInitial.BorderStyle = BorderStyle.FixedSingle;
-            textBox_AgentMInitial.Location = new Point(200, 466);
-            textBox_AgentMInitial.Margin = new Padding(3, 2, 3, 2);
-            textBox_AgentMInitial.Name = "textBox_AgentMInitial";
-            textBox_AgentMInitial.ReadOnly = true;
-            textBox_AgentMInitial.Size = new Size(153, 23);
-            textBox_AgentMInitial.TabIndex = 13;
-            // 
-            // textBox_AgentFName
-            // 
-            textBox_AgentFName.BorderStyle = BorderStyle.FixedSingle;
-            textBox_AgentFName.Location = new Point(21, 466);
-            textBox_AgentFName.Margin = new Padding(3, 2, 3, 2);
-            textBox_AgentFName.Name = "textBox_AgentFName";
-            textBox_AgentFName.ReadOnly = true;
-            textBox_AgentFName.Size = new Size(153, 23);
-            textBox_AgentFName.TabIndex = 12;
-            // 
             // button_AgencyAdd
             // 
             button_AgencyAdd.Cursor = Cursors.Hand;
@@ -284,113 +220,6 @@ namespace TravelExperts.Views
             button_AgencyDelete.Text = "Delete Agency";
             button_AgencyDelete.UseVisualStyleBackColor = true;
             button_AgencyDelete.Click += button_AgencyDelete_Click;
-            // 
-            // button_AgentDelete
-            // 
-            button_AgentDelete.Cursor = Cursors.Hand;
-            button_AgentDelete.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 0, 0);
-            button_AgentDelete.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 192, 192);
-            button_AgentDelete.FlatStyle = FlatStyle.Flat;
-            button_AgentDelete.Location = new Point(383, 603);
-            button_AgentDelete.Margin = new Padding(3, 2, 3, 2);
-            button_AgentDelete.Name = "button_AgentDelete";
-            button_AgentDelete.Size = new Size(152, 36);
-            button_AgentDelete.TabIndex = 23;
-            button_AgentDelete.Text = "Delete Agent";
-            button_AgentDelete.UseVisualStyleBackColor = true;
-            button_AgentDelete.Click += button_AgentDelete_Click;
-            // 
-            // button_AgentEdit
-            // 
-            button_AgentEdit.Cursor = Cursors.Hand;
-            button_AgentEdit.FlatAppearance.MouseDownBackColor = Color.FromArgb(255, 128, 0);
-            button_AgentEdit.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 224, 192);
-            button_AgentEdit.FlatStyle = FlatStyle.Flat;
-            button_AgentEdit.Location = new Point(201, 603);
-            button_AgentEdit.Margin = new Padding(3, 2, 3, 2);
-            button_AgentEdit.Name = "button_AgentEdit";
-            button_AgentEdit.Size = new Size(152, 36);
-            button_AgentEdit.TabIndex = 22;
-            button_AgentEdit.Text = "Edit Agent";
-            button_AgentEdit.UseVisualStyleBackColor = true;
-            button_AgentEdit.Click += button_AgentEdit_Click;
-            // 
-            // button_AgentAdd
-            // 
-            button_AgentAdd.Cursor = Cursors.Hand;
-            button_AgentAdd.FlatAppearance.MouseDownBackColor = Color.Lime;
-            button_AgentAdd.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 255, 192);
-            button_AgentAdd.FlatStyle = FlatStyle.Flat;
-            button_AgentAdd.Location = new Point(22, 603);
-            button_AgentAdd.Margin = new Padding(3, 2, 3, 2);
-            button_AgentAdd.Name = "button_AgentAdd";
-            button_AgentAdd.Size = new Size(152, 36);
-            button_AgentAdd.TabIndex = 21;
-            button_AgentAdd.Text = "Add Agent";
-            button_AgentAdd.UseVisualStyleBackColor = true;
-            button_AgentAdd.Click += button_AgentAdd_Click;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 9F, FontStyle.Underline, GraphicsUnit.Point, 0);
-            label3.Location = new Point(316, 424);
-            label3.Name = "label3";
-            label3.Size = new Size(67, 15);
-            label3.TabIndex = 28;
-            label3.Text = "Agency ID :";
-            // 
-            // button_AgentForward
-            // 
-            button_AgentForward.Location = new Point(74, 416);
-            button_AgentForward.Margin = new Padding(3, 2, 3, 2);
-            button_AgentForward.Name = "button_AgentForward";
-            button_AgentForward.Size = new Size(45, 24);
-            button_AgentForward.TabIndex = 27;
-            button_AgentForward.Text = ">";
-            button_AgentForward.UseVisualStyleBackColor = true;
-            button_AgentForward.Click += button_AgentForward_Click;
-            // 
-            // button_AgentBack
-            // 
-            button_AgentBack.Location = new Point(21, 415);
-            button_AgentBack.Margin = new Padding(3, 2, 3, 2);
-            button_AgentBack.Name = "button_AgentBack";
-            button_AgentBack.Size = new Size(47, 24);
-            button_AgentBack.TabIndex = 26;
-            button_AgentBack.Text = "<";
-            button_AgentBack.UseVisualStyleBackColor = true;
-            button_AgentBack.Click += button_AgentBack_Click;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Adobe Gothic Std B", 18F, FontStyle.Bold, GraphicsUnit.Point, 128);
-            label4.Location = new Point(22, 372);
-            label4.Name = "label4";
-            label4.Size = new Size(92, 30);
-            label4.TabIndex = 24;
-            label4.Text = "Agents";
-            // 
-            // textBox_AgentID
-            // 
-            textBox_AgentID.Location = new Point(500, 417);
-            textBox_AgentID.Margin = new Padding(3, 2, 3, 2);
-            textBox_AgentID.Name = "textBox_AgentID";
-            textBox_AgentID.ReadOnly = true;
-            textBox_AgentID.Size = new Size(35, 23);
-            textBox_AgentID.TabIndex = 31;
-            textBox_AgentID.TextAlign = HorizontalAlignment.Center;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 9F, FontStyle.Underline, GraphicsUnit.Point, 0);
-            label5.Location = new Point(436, 425);
-            label5.Name = "label5";
-            label5.Size = new Size(59, 15);
-            label5.TabIndex = 30;
-            label5.Text = "Agent ID :";
             // 
             // label6
             // 
@@ -465,60 +294,6 @@ namespace TravelExperts.Views
             textBox_AgencyFaxPhone.Size = new Size(153, 23);
             textBox_AgencyFaxPhone.TabIndex = 39;
             // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Location = new Point(22, 448);
-            label13.Name = "label13";
-            label13.Size = new Size(64, 15);
-            label13.TabIndex = 40;
-            label13.Text = "First Name";
-            // 
-            // label14
-            // 
-            label14.AutoSize = true;
-            label14.Location = new Point(200, 449);
-            label14.Name = "label14";
-            label14.Size = new Size(76, 15);
-            label14.TabIndex = 41;
-            label14.Text = "Middle Initial";
-            // 
-            // label15
-            // 
-            label15.AutoSize = true;
-            label15.Location = new Point(380, 450);
-            label15.Name = "label15";
-            label15.Size = new Size(63, 15);
-            label15.TabIndex = 42;
-            label15.Text = "Last Name";
-            // 
-            // label16
-            // 
-            label16.AutoSize = true;
-            label16.Location = new Point(21, 495);
-            label16.Name = "label16";
-            label16.Size = new Size(92, 15);
-            label16.TabIndex = 43;
-            label16.Text = "Business Phone ";
-            // 
-            // label17
-            // 
-            label17.AutoSize = true;
-            label17.Location = new Point(21, 549);
-            label17.Name = "label17";
-            label17.Size = new Size(36, 15);
-            label17.TabIndex = 44;
-            label17.Text = "Email";
-            // 
-            // label18
-            // 
-            label18.AutoSize = true;
-            label18.Location = new Point(200, 495);
-            label18.Name = "label18";
-            label18.Size = new Size(50, 15);
-            label18.TabIndex = 45;
-            label18.Text = "Position";
-            // 
             // panel1
             // 
             panel1.BackColor = SystemColors.InfoText;
@@ -527,16 +302,6 @@ namespace TravelExperts.Views
             panel1.Name = "panel1";
             panel1.Size = new Size(590, 10);
             panel1.TabIndex = 99;
-            // 
-            // textBox_AgencyID2
-            // 
-            textBox_AgencyID2.Location = new Point(389, 416);
-            textBox_AgencyID2.Margin = new Padding(3, 2, 3, 2);
-            textBox_AgencyID2.Name = "textBox_AgencyID2";
-            textBox_AgencyID2.ReadOnly = true;
-            textBox_AgencyID2.Size = new Size(35, 23);
-            textBox_AgencyID2.TabIndex = 100;
-            textBox_AgencyID2.TextAlign = HorizontalAlignment.Center;
             // 
             // button_AgenciesForward
             // 
@@ -549,21 +314,100 @@ namespace TravelExperts.Views
             button_AgenciesForward.UseVisualStyleBackColor = true;
             button_AgenciesForward.Click += button_AgenciesForward_Click;
             // 
+            // dataGridView1
+            // 
+            dataGridView1.AutoGenerateColumns = false;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { agentIdDataGridViewTextBoxColumn, agtFirstNameDataGridViewTextBoxColumn, agtMiddleInitialDataGridViewTextBoxColumn, agtLastNameDataGridViewTextBoxColumn, agtBusPhoneDataGridViewTextBoxColumn, agtEmailDataGridViewTextBoxColumn, agtPositionDataGridViewTextBoxColumn, agencyIdDataGridViewTextBoxColumn, agencyDataGridViewTextBoxColumn, customersDataGridViewTextBoxColumn, agentStatusDataGridViewCheckBoxColumn });
+            dataGridView1.DataSource = agentBindingSource;
+            dataGridView1.Location = new Point(647, 56);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.Size = new Size(581, 258);
+            dataGridView1.TabIndex = 102;
+            // 
+            // agentIdDataGridViewTextBoxColumn
+            // 
+            agentIdDataGridViewTextBoxColumn.DataPropertyName = "AgentId";
+            agentIdDataGridViewTextBoxColumn.HeaderText = "AgentId";
+            agentIdDataGridViewTextBoxColumn.Name = "agentIdDataGridViewTextBoxColumn";
+            // 
+            // agtFirstNameDataGridViewTextBoxColumn
+            // 
+            agtFirstNameDataGridViewTextBoxColumn.DataPropertyName = "AgtFirstName";
+            agtFirstNameDataGridViewTextBoxColumn.HeaderText = "AgtFirstName";
+            agtFirstNameDataGridViewTextBoxColumn.Name = "agtFirstNameDataGridViewTextBoxColumn";
+            // 
+            // agtMiddleInitialDataGridViewTextBoxColumn
+            // 
+            agtMiddleInitialDataGridViewTextBoxColumn.DataPropertyName = "AgtMiddleInitial";
+            agtMiddleInitialDataGridViewTextBoxColumn.HeaderText = "AgtMiddleInitial";
+            agtMiddleInitialDataGridViewTextBoxColumn.Name = "agtMiddleInitialDataGridViewTextBoxColumn";
+            // 
+            // agtLastNameDataGridViewTextBoxColumn
+            // 
+            agtLastNameDataGridViewTextBoxColumn.DataPropertyName = "AgtLastName";
+            agtLastNameDataGridViewTextBoxColumn.HeaderText = "AgtLastName";
+            agtLastNameDataGridViewTextBoxColumn.Name = "agtLastNameDataGridViewTextBoxColumn";
+            // 
+            // agtBusPhoneDataGridViewTextBoxColumn
+            // 
+            agtBusPhoneDataGridViewTextBoxColumn.DataPropertyName = "AgtBusPhone";
+            agtBusPhoneDataGridViewTextBoxColumn.HeaderText = "AgtBusPhone";
+            agtBusPhoneDataGridViewTextBoxColumn.Name = "agtBusPhoneDataGridViewTextBoxColumn";
+            // 
+            // agtEmailDataGridViewTextBoxColumn
+            // 
+            agtEmailDataGridViewTextBoxColumn.DataPropertyName = "AgtEmail";
+            agtEmailDataGridViewTextBoxColumn.HeaderText = "AgtEmail";
+            agtEmailDataGridViewTextBoxColumn.Name = "agtEmailDataGridViewTextBoxColumn";
+            // 
+            // agtPositionDataGridViewTextBoxColumn
+            // 
+            agtPositionDataGridViewTextBoxColumn.DataPropertyName = "AgtPosition";
+            agtPositionDataGridViewTextBoxColumn.HeaderText = "AgtPosition";
+            agtPositionDataGridViewTextBoxColumn.Name = "agtPositionDataGridViewTextBoxColumn";
+            // 
+            // agencyIdDataGridViewTextBoxColumn
+            // 
+            agencyIdDataGridViewTextBoxColumn.DataPropertyName = "AgencyId";
+            agencyIdDataGridViewTextBoxColumn.HeaderText = "AgencyId";
+            agencyIdDataGridViewTextBoxColumn.Name = "agencyIdDataGridViewTextBoxColumn";
+            // 
+            // agencyDataGridViewTextBoxColumn
+            // 
+            agencyDataGridViewTextBoxColumn.DataPropertyName = "Agency";
+            agencyDataGridViewTextBoxColumn.HeaderText = "Agency";
+            agencyDataGridViewTextBoxColumn.Name = "agencyDataGridViewTextBoxColumn";
+            // 
+            // customersDataGridViewTextBoxColumn
+            // 
+            customersDataGridViewTextBoxColumn.DataPropertyName = "Customers";
+            customersDataGridViewTextBoxColumn.HeaderText = "Customers";
+            customersDataGridViewTextBoxColumn.Name = "customersDataGridViewTextBoxColumn";
+            // 
+            // agentStatusDataGridViewCheckBoxColumn
+            // 
+            agentStatusDataGridViewCheckBoxColumn.DataPropertyName = "AgentStatus";
+            agentStatusDataGridViewCheckBoxColumn.HeaderText = "AgentStatus";
+            agentStatusDataGridViewCheckBoxColumn.Name = "agentStatusDataGridViewCheckBoxColumn";
+            // 
+            // agentBindingSource
+            // 
+            agentBindingSource.DataSource = typeof(Models.Models.Agent);
+            // 
+            // agentsAndAgenciesControllersBindingSource
+            // 
+            agentsAndAgenciesControllersBindingSource.DataSource = typeof(Controllers.AgentsAndAgenciesControllers);
+            // 
             // frmAdminGUI
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ScrollBar;
-            ClientSize = new Size(584, 701);
+            ClientSize = new Size(1273, 701);
+            Controls.Add(dataGridView1);
             Controls.Add(button_AgenciesForward);
-            Controls.Add(textBox_AgencyID2);
             Controls.Add(panel1);
-            Controls.Add(label18);
-            Controls.Add(label17);
-            Controls.Add(label16);
-            Controls.Add(label15);
-            Controls.Add(label14);
-            Controls.Add(label13);
             Controls.Add(textBox_AgencyFaxPhone);
             Controls.Add(label12);
             Controls.Add(label11);
@@ -572,24 +416,9 @@ namespace TravelExperts.Views
             Controls.Add(label8);
             Controls.Add(label7);
             Controls.Add(label6);
-            Controls.Add(textBox_AgentID);
-            Controls.Add(label5);
-            Controls.Add(label3);
-            Controls.Add(button_AgentForward);
-            Controls.Add(button_AgentBack);
-            Controls.Add(label4);
-            Controls.Add(button_AgentDelete);
-            Controls.Add(button_AgentEdit);
-            Controls.Add(button_AgentAdd);
             Controls.Add(button_AgencyDelete);
             Controls.Add(button_AgencyEdit);
             Controls.Add(button_AgencyAdd);
-            Controls.Add(textBox_AgentPosition);
-            Controls.Add(textBox_AgentEmail);
-            Controls.Add(textBox_AgentBussPhone);
-            Controls.Add(textBox_AgentLName);
-            Controls.Add(textBox_AgentMInitial);
-            Controls.Add(textBox_AgentFName);
             Controls.Add(textBox_AgencyBusPhone);
             Controls.Add(textBox_AgencyCountry);
             Controls.Add(textBox_AgencyPostal);
@@ -600,11 +429,14 @@ namespace TravelExperts.Views
             Controls.Add(label2);
             Controls.Add(button_AgenciesBack);
             Controls.Add(label1);
-            FormBorderStyle = FormBorderStyle.Fixed3D;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(3, 2, 3, 2);
             Name = "frmAdminGUI";
             Text = "Admin Dashboard";
             Load += FrmAdminGUI_Load;
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)agentBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)agentsAndAgenciesControllersBindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -626,24 +458,9 @@ namespace TravelExperts.Views
         private TextBox textBox_AgencyBusPhone;
         private TextBox textBox_AgencyCountry;
         private TextBox textBox_AgencyPostal;
-        private TextBox textBox_AgentPosition;
-        private TextBox textBox_AgentEmail;
-        private TextBox textBox_AgentBussPhone;
-        private TextBox textBox_AgentLName;
-        private TextBox textBox_AgentMInitial;
-        private TextBox textBox_AgentFName;
         private Button button_AgencyAdd;
         private Button button_AgencyEdit;
         private Button button_AgencyDelete;
-        private Button button_AgentDelete;
-        private Button button_AgentEdit;
-        private Button button_AgentAdd;
-        private Label label3;
-        private Button button_AgentForward;
-        private Button button_AgentBack;
-        private Label label4;
-        private TextBox textBox_AgentID;
-        private Label label5;
         private Label label6;
         private Label label7;
         private Label label8;
@@ -652,14 +469,21 @@ namespace TravelExperts.Views
         private Label label11;
         private Label label12;
         private TextBox textBox_AgencyFaxPhone;
-        private Label label13;
-        private Label label14;
-        private Label label15;
-        private Label label16;
-        private Label label17;
-        private Label label18;
         private Panel panel1;
-        private TextBox textBox_AgencyID2;
         private Button button_AgenciesForward;
+        private DataGridView dataGridView1;
+        private BindingSource agentsAndAgenciesControllersBindingSource;
+        private DataGridViewTextBoxColumn agentIdDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn agtFirstNameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn agtMiddleInitialDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn agtLastNameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn agtBusPhoneDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn agtEmailDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn agtPositionDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn agencyIdDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn agencyDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn customersDataGridViewTextBoxColumn;
+        private DataGridViewCheckBoxColumn agentStatusDataGridViewCheckBoxColumn;
+        private BindingSource agentBindingSource;
     }
 }
