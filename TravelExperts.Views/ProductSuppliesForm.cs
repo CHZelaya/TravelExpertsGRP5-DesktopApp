@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -162,9 +163,41 @@ namespace TravelExperts.Views
             //    products.Select(p=>p.ProdName)//selecting only names and adds them into cbx
             //    .ToArray());
 
-            var selectedId = ((KeyValuePair<int, string>)travelServicesCBx.SelectedItem).Key;
+            //check if supplier selected 
+            //if true insert that value in form
+            //supplierLB.Items.Count checks if items present
+            if (supplierLB.Items.Count > 0 && supplierLB.SelectedItems != null )
+            {
+                var selectedProduct = (dynamic) supplierLB.SelectedItem;
+                    
+                var supID = selectedProduct.Key; // Access Key
+                var supName = selectedProduct.Value; // Access Value
 
-            suppliersTB.Text = selectedId.ToString();
+                suppliersTB.Text = supName;
+
+                //get product name of that supplier
+                if (supID != null)
+                {
+                    Product p = ProductSuppliesController.getProductBySupplierId(supID);
+                    if (p != null)
+                    {
+                        int index = travelServicesCBx.FindString(p.ProdName);
+                        if (index != -1) // Ensure the item exists in the ComboBox
+                        {
+                            travelServicesCBx.SelectedIndex = index;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Product not found in the list.");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No product found for the given supplier ID.");
+                    }
+                }
+            }
+
         }
 
         //resets the form

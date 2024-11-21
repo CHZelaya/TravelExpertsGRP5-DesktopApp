@@ -60,5 +60,27 @@ namespace TravelExperts.Controllers
             }
             return result;
         }
+
+        /// <summary>
+        /// gets product of the supplier by supplier id
+        /// </summary>
+        /// <param name="supplierId"></param>
+        /// <returns></returns>
+        public static Product getProductBySupplierId(int supplierId) {
+            Product result = new Product();
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                result = db.Products
+                        .Join(db.ProductsSuppliers,
+                              p => p.ProductId,
+                              ps => ps.ProductId,
+                              (p, ps) => new { Product = p, ProductSupplier = ps })
+                        .Where(x => x.ProductSupplier.SupplierId == supplierId)
+                        .Select(x => x.Product)
+                        .FirstOrDefault();
+
+            }
+            return result;
+        }
     }
 }

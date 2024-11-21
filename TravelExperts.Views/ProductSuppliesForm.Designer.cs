@@ -82,7 +82,7 @@
             supplierLB.Location = new Point(248, 177);
             supplierLB.Margin = new Padding(3, 4, 3, 4);
             supplierLB.Name = "supplierLB";
-            supplierLB.Size = new Size(393, 324);
+            supplierLB.Size = new Size(358, 324);
             supplierLB.TabIndex = 2;
             // 
             // searchTB
@@ -100,7 +100,7 @@
             // 
             suppliersLbl.AutoSize = true;
             suppliersLbl.Font = new Font("Times New Roman", 12F);
-            suppliersLbl.Location = new Point(864, 369);
+            suppliersLbl.Location = new Point(835, 369);
             suppliersLbl.Name = "suppliersLbl";
             suppliersLbl.Size = new Size(92, 22);
             suppliersLbl.TabIndex = 5;
@@ -117,17 +117,17 @@
             // suppliersTB
             // 
             suppliersTB.Font = new Font("Times New Roman", 12F);
-            suppliersTB.Location = new Point(962, 361);
+            suppliersTB.Location = new Point(933, 361);
             suppliersTB.Margin = new Padding(3, 4, 3, 4);
             suppliersTB.Name = "suppliersTB";
-            suppliersTB.Size = new Size(114, 30);
+            suppliersTB.Size = new Size(201, 30);
             suppliersTB.TabIndex = 7;
             suppliersTB.Visible = false;
             // 
             // addBtn
             // 
             addBtn.Font = new Font("Times New Roman", 12F);
-            addBtn.Location = new Point(648, 236);
+            addBtn.Location = new Point(624, 231);
             addBtn.Margin = new Padding(3, 4, 3, 4);
             addBtn.Name = "addBtn";
             addBtn.Size = new Size(141, 55);
@@ -140,7 +140,7 @@
             // 
             travelServiceLbl.AutoSize = true;
             travelServiceLbl.Font = new Font("Times New Roman", 12F);
-            travelServiceLbl.Location = new Point(814, 231);
+            travelServiceLbl.Location = new Point(785, 231);
             travelServiceLbl.Name = "travelServiceLbl";
             travelServiceLbl.Size = new Size(142, 22);
             travelServiceLbl.TabIndex = 10;
@@ -150,7 +150,7 @@
             // updateBtn
             // 
             updateBtn.Font = new Font("Times New Roman", 12F);
-            updateBtn.Location = new Point(648, 340);
+            updateBtn.Location = new Point(624, 335);
             updateBtn.Margin = new Padding(3, 4, 3, 4);
             updateBtn.Name = "updateBtn";
             updateBtn.Size = new Size(141, 55);
@@ -161,7 +161,7 @@
             // deleteBtn
             // 
             deleteBtn.Font = new Font("Times New Roman", 12F);
-            deleteBtn.Location = new Point(648, 429);
+            deleteBtn.Location = new Point(624, 424);
             deleteBtn.Margin = new Padding(3, 4, 3, 4);
             deleteBtn.Name = "deleteBtn";
             deleteBtn.Size = new Size(141, 55);
@@ -196,9 +196,9 @@
             // travelServicesCBx
             // 
             travelServicesCBx.FormattingEnabled = true;
-            travelServicesCBx.Location = new Point(962, 225);
+            travelServicesCBx.Location = new Point(933, 225);
             travelServicesCBx.Name = "travelServicesCBx";
-            travelServicesCBx.Size = new Size(151, 28);
+            travelServicesCBx.Size = new Size(172, 28);
             travelServicesCBx.TabIndex = 16;
             // 
             // ProductSuppliesForm
