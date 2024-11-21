@@ -165,8 +165,7 @@ namespace TravelExperts.Views
 
             //check if supplier selected 
             //if true insert that value in form
-            //supplierLB.Items.Count checks if items present
-            if (supplierLB.Items.Count > 0 && supplierLB.SelectedItems != null )
+            if (supplierLB.SelectedIndex > -1)
             {
                 var selectedProduct = (dynamic) supplierLB.SelectedItem;
                     
@@ -205,6 +204,7 @@ namespace TravelExperts.Views
         {
             suppliersTB.Text = string.Empty;
             travelServicesCBx.Items.Clear();
+            travelServicesCBx.Text = string.Empty;
         }
 
         /// <summary>
