@@ -10,7 +10,7 @@ namespace TravelExperts.Controllers
     public class ProductSuppliesController
     {
         
-        //crazy note!: static helps avoid making new object of class while caling
+        //note: static helps avoid making new object of class while caling
         // see reference
         public static List<Product> getAllProducts()
         {
@@ -81,6 +81,93 @@ namespace TravelExperts.Controllers
 
             }
             return result;
+        }
+
+        public static int AddOrUpdateProdSupp(Supplier s, Product p)
+        {
+            int rowsAffected = 0;
+
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                // Add or update supplier
+                if (s.SupplierId > 0)
+                {
+                    db.Suppliers.Update(s); // Update existing supplier
+                }
+                else
+                {
+                    //generate auto increment supp id
+                    int idMax = db.Suppliers.Max(s => s.SupplierId);
+                    s.SupplierId = ++idMax;
+                    db.Suppliers.Add(s); // Add new supplier
+                }
+                
+                // Check if a ProductSupplier entry exists
+                var productSupplier = db.ProductsSuppliers
+                    .FirstOrDefault(ps => ps.SupplierId == s.SupplierId);
+
+                if (productSupplier != null)
+                {
+                    // Update existing ProductsSupplier
+                    productSupplier.ProductId = p.ProductId;
+                    db.ProductsSuppliers.Update(productSupplier);
+                }
+                else
+                {
+                    // Add a new ProductsSupplier entry
+                    var newProductSupplier = new ProductsSupplier
+                    {
+                        SupplierId = s.SupplierId,
+                        ProductId = p.ProductId
+                    };
+                    db.ProductsSuppliers.Add(newProductSupplier);
+                }
+
+                // Save changes for both operations
+                rowsAffected += db.SaveChanges();
+            }
+
+            return rowsAffected;
+        }
+
+
+        /// <summary>
+        /// returns supplier from supplier id
+        /// </summary>
+        /// <param name="supId"></param>
+        /// <returns></returns>
+        public static Supplier getSupplierBySupplierId(int supId)
+        {
+            Supplier s = new Supplier();
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                s = db.Suppliers
+                    .Where(s => s.SupplierId == supId)
+                    .Single();
+            }
+            return s;
+        }
+
+        /// <summary>
+        /// deletes supplier using supplier id
+        /// </summary>
+        /// <param name="supplierId"></param>
+        /// <returns> rows affected </returns>
+        public static int deleteSupplierById(int supplierId)
+        {
+            int res = 0;
+            {
+                using (TravelExpertsContext db = new TravelExpertsContext())
+                {
+                    Supplier s = getSupplierBySupplierId(supplierId);
+                    if (s != null)
+                    {
+                        db.Suppliers.Remove(s);
+                        res = db.SaveChanges();
+                    }
+                }
+            }
+            return res;
         }
     }
 }

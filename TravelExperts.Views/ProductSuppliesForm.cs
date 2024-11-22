@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TravelExperts.Controllers;
@@ -22,14 +23,33 @@ namespace TravelExperts.Views
         }
 
         //global variables
-        List<Product> products = ProductSuppliesController.getAllProducts();
-        List<Supplier> suppliers = ProductSuppliesController.getAllSuppliers();
+        List<Product> products = new List<Product>();
+        List<Supplier> suppliers = new List<Supplier>();
 
         private void ProductSuppliesForm_Load(object sender, EventArgs e)
         {
+            //clear and hide form
+            travelServiceLbl.Visible = false;
+            suppliersLbl.Visible = false;
+            travelServicesCBx.Visible = false;
+            suppliersTB.Visible = false;
+            saveBtn.Visible = false;
+            resetBtn.Visible = false;
+            searchTB.Clear();
+            suppliersTB.Text = string.Empty;
+            travelServicesCBx.Items.Clear();
+            travelServicesCBx.Text = string.Empty;
+
             //productID auto-increment
             //ProductSupplierId auto-increment
             //SupplierId is not auto increment
+
+            //reset values
+            products = new List<Product>();
+            suppliers = new List<Supplier>();
+
+            products = ProductSuppliesController.getAllProducts();
+            suppliers = ProductSuppliesController.getAllSuppliers();
 
             //onload load all product and suppliers        
 
@@ -145,11 +165,13 @@ namespace TravelExperts.Views
         /// <param name="e"></param>
         private void addBtn_Click(object sender, EventArgs e)
         {
-            resetBtn_Click(sender, e);//reset before displaying
+            ProductSuppliesForm_Load(sender, e);//reset before displaying
             travelServiceLbl.Visible = true;
             suppliersLbl.Visible = true;
             travelServicesCBx.Visible = true;
             suppliersTB.Visible = true;
+            saveBtn.Visible = true;
+            resetBtn.Visible = true;
             //valdating tb(can replace with Cantons)
 
             travelServicesCBx.DisplayMember = "Value";//holds prodName
@@ -171,6 +193,9 @@ namespace TravelExperts.Views
                     
                 var supID = selectedProduct.Key; // Access Key
                 var supName = selectedProduct.Value; // Access Value
+                
+                //storing supid in hidden lbl
+                hiddenLblSupID.Text = Convert.ToString(supID);
 
                 suppliersTB.Text = supName;
 
@@ -202,6 +227,16 @@ namespace TravelExperts.Views
         //resets the form
         private void resetBtn_Click(object sender, EventArgs e)
         {
+            //clear and hide form
+            supplierLB.ClearSelected();
+            travelServicesLB.ClearSelected();
+            travelServiceLbl.Visible = false;
+            suppliersLbl.Visible = false;
+            travelServicesCBx.Visible = false;
+            suppliersTB.Visible = false;
+            saveBtn.Visible = false;
+            resetBtn.Visible = false;
+            searchTB.Clear();
             suppliersTB.Text = string.Empty;
             travelServicesCBx.Items.Clear();
             travelServicesCBx.Text = string.Empty;
@@ -214,7 +249,87 @@ namespace TravelExperts.Views
         /// <param name="e"></param>
         private void saveBtn_Click(object sender, EventArgs e)
         {
+            //validate form
+            string suppName = suppliersTB.Text.Trim();
+            var selectedProduct = (dynamic)travelServicesCBx.SelectedItem;
+            var productId = selectedProduct.Key;
+            string prodName = selectedProduct.Value;
 
+            // Regex to allow only alphanumeric characters and spaces
+            Regex regex = new Regex("^[a-zA-Z0-9 ]*$");
+
+            // TextBox validation
+            if (string.IsNullOrWhiteSpace(suppName) 
+                || !regex.IsMatch(suppName))
+            {
+                MessageBox.Show("Text field cannot be empty or have any special characters.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            //cbx validation
+            if (string.IsNullOrWhiteSpace(prodName))
+            {
+                MessageBox.Show("Please select a value from the combo box.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            //save in products, suppliers,product_suppliers
+            //if already exists update else add
+
+            //i have stored supid in a hidden
+            //field in addUpdateBtn_click method
+            string supIdStr = hiddenLblSupID.Text;
+            
+            Supplier s = new Supplier();
+            Product p = new Product();
+
+            //store values to prod n supp
+            s.SupName = suppName;
+            p.ProdName = prodName;
+            p.ProductId = productId;
+
+            //check if hidden supid 
+            //if true ie it exists so update
+            if (!string.IsNullOrWhiteSpace(supIdStr))
+            {
+                int supId = Convert.ToInt32(supIdStr);
+                s = ProductSuppliesController
+                    .getSupplierBySupplierId(supId);
+                //updating supname
+                s.SupName = suppName;
+
+
+                 //get the name of product from supplier
+                p = ProductSuppliesController
+                    .getProductBySupplierId(supId);
+
+                //updating prodname
+                p.ProdName = prodName;
+                p.ProductId = productId;
+            }
+
+            //if supid present updates
+            //else passes empty supplier and product model objects
+            //this adds into db instead of update
+            int rowsAffected = ProductSuppliesController
+                .AddOrUpdateProdSupp(s,p);
+
+            if (rowsAffected > 0)
+            {
+                MessageBox.Show("Data saved successfully!",
+                    "Success",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                
+                ProductSuppliesForm_Load(sender, e);//refresh data
+            }
+            else
+            {
+                MessageBox.Show($"Error saving data",
+                    "Error",
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Error);
+            }
         }
     }
 }
