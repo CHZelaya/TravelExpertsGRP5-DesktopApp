@@ -31,4 +31,9 @@ public partial class Agency
 
     [InverseProperty("Agency")]
     public virtual ICollection<Agent> Agents { get; set; } = new List<Agent>();
+
+    public override string ToString()
+    {
+        return $"{AgencyId} {AgncyAddress} {AgncyCity} {AgncyProv} {AgncyPostal} {AgncyCountry} {AgncyPhone} {AgncyFax}";
+    }
 }
