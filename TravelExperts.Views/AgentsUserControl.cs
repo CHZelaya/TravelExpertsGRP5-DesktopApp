@@ -28,15 +28,25 @@ namespace TravelExperts.Views
 
         private void LoadAgents()
         {
-            var agents = new BindingList<Agent>(_agentsAndAgencies.GetActiveAgents());
-            dataGridView_Base.DataSource = agents;
-            _agentsBindingList = agents; // Store the binding list for later use
-            CustomizeDataGridView();
+            if (_agentsBindingList == null)
+            {
+                _agentsBindingList = new BindingList<Agent>(_agentsAndAgencies.GetActiveAgents());
+                dataGridView_Base.DataSource = _agentsBindingList;
+                CustomizeDataGridView();
+            }
         }
 
         public void RefreshAgents()
-        {
-            LoadAgents();
+        {   //Clearing the binding list (Attempting to refresh after CRUD operation)
+            _agentsBindingList.Clear();
+            var agents = _agentsAndAgencies.GetActiveAgents();
+            foreach (var agent in agents)
+            {
+                {
+                    _agentsBindingList.Add(agent);
+                }
+            }
+            CustomizeDataGridView();
         }
 
         //EventListeners for buttons

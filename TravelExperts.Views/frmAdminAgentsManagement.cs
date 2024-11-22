@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -51,6 +52,29 @@ namespace TravelExperts.Views
         //ON LOAD
         /*____________________________________________________________________________________________________________________________________________________________________ */
 
+        private void frmAdminAgentsManagement_Load(object sender, EventArgs e)
+        {
+            if (ActionFlag == "Deletion")
+            {
+                //Setting textboxes to read only
+                textBox_AgentFName.Enabled = false;
+                textBox_AgentLName.Enabled = false;
+                textBox_AgentMInitial.Enabled = false;
+                textBox_AgentBussPhone.Enabled = false;
+                textBox_AgentEmail.Enabled = false;
+                textBox_AgentPosition.Enabled = false;
+            }
+            else
+            {
+                textBox_AgentFName.Enabled = true;
+                textBox_AgentLName.Enabled = true;
+                textBox_AgentMInitial.Enabled = true;
+                textBox_AgentBussPhone.Enabled = true;
+                textBox_AgentEmail.Enabled = true;
+                textBox_AgentPosition.Enabled = true;
+            }
+        }
+
 
         private void button_OK_Click(object? sender, EventArgs e)
         {
@@ -58,20 +82,46 @@ namespace TravelExperts.Views
             {
                 HandleAgentAddtion();
             }
-            else if (ActionFlag == "Modify")
+            if (ActionFlag == "Modify")
             {
                 HandleAgentModify();
             }
-            else if (ActionFlag == "Deletion")
+            if (ActionFlag == "Deletion")
             {
-                HandleAgentModify();
+                HandleAgentDeletion();
             }
         }
 
         private void HandleAgentDeletion()
         {
 
-            throw new NotImplementedException();
+
+            Agent agentToDelete = new Agent
+            {
+                AgentId = AgentID,
+                //AgtFirstName = textBox_AgentFName.Text,
+                //AgtMiddleInitial = textBox_AgentMInitial.Text,
+                //AgtLastName = textBox_AgentLName.Text,
+                //AgtBusPhone = textBox_AgentBussPhone.Text,
+                //AgtEmail = textBox_AgentEmail.Text,
+                //AgtPosition = textBox_AgentPosition.Text,
+                AgentStatus = false
+
+            };
+            try
+            {
+                _agentsAndAgencies.DeleteAgent(agentToDelete);
+                DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            catch (DbUpdateException dbEx)
+            {
+                MessageBox.Show($"Database error while deleting agent: {dbEx.Message}");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error deleting Agent: {ex.Message}");
+            }
         }
 
         private void HandleAgentModify()
@@ -93,13 +143,16 @@ namespace TravelExperts.Views
             try
             {
                 _agentsAndAgencies.UpdateAgent(agentToUpdate);
-
+                DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            catch (DbUpdateException dbEx)
+            {
+                MessageBox.Show($"Database error while modifying agent: {dbEx.Message}");
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error Adding Agent: {ex.Message}");
-
-
+                MessageBox.Show($"Error Modifying Agent: {ex.Message}");
             }
 
         }

@@ -30,8 +30,6 @@ namespace TravelExperts.Views
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
-            textBox_AgencyID = new TextBox();
-            label8 = new Label();
             textBox_AgencyFaxPhone = new TextBox();
             label7 = new Label();
             button_Cancel = new Button();
@@ -54,8 +52,6 @@ namespace TravelExperts.Views
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(textBox_AgencyID);
-            groupBox1.Controls.Add(label8);
             groupBox1.Controls.Add(textBox_AgencyFaxPhone);
             groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(button_Cancel);
@@ -78,22 +74,6 @@ namespace TravelExperts.Views
             groupBox1.TabIndex = 3;
             groupBox1.TabStop = false;
             groupBox1.Text = "Agency Details";
-            // 
-            // textBox_AgencyID
-            // 
-            textBox_AgencyID.Location = new Point(425, 34);
-            textBox_AgencyID.Name = "textBox_AgencyID";
-            textBox_AgencyID.Size = new Size(26, 23);
-            textBox_AgencyID.TabIndex = 18;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(345, 42);
-            label8.Name = "label8";
-            label8.Size = new Size(67, 15);
-            label8.TabIndex = 17;
-            label8.Text = "Agency ID :";
             // 
             // textBox_AgencyFaxPhone
             // 
@@ -134,6 +114,7 @@ namespace TravelExperts.Views
             button_OK.TabIndex = 2;
             button_OK.Text = "OK";
             button_OK.UseVisualStyleBackColor = true;
+            button_OK.Click += button_OK_Click;
             // 
             // textBox_AgencyBusPhone
             // 
@@ -251,7 +232,7 @@ namespace TravelExperts.Views
             Controls.Add(label_AgenciesTitle);
             Name = "frmAdminAgenciesManagement";
             Text = "Admin Agencies Management";
-            Load += this.frmAdminAgenciesManagement_Load_1;
+            Load += frmAdminAgenciesManagement_Load_1;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ResumeLayout(false);
@@ -280,7 +261,5 @@ namespace TravelExperts.Views
         private Label label_AgenciesTitle;
         private TextBox textBox_AgencyFaxPhone;
         private Label label7;
-        private TextBox textBox_AgencyID;
-        private Label label8;
     }
 }

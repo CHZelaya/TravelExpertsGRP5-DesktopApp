@@ -211,7 +211,7 @@
             Controls.Add(label_AgentsTitle);
             Name = "frmAdminAgentsManagement";
             Text = "Admin Agents Management";
-            //Load += frmAdminAgentsManagement_Load;
+            Load += frmAdminAgentsManagement_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ResumeLayout(false);

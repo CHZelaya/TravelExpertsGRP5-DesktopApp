@@ -42,6 +42,11 @@ namespace TravelExperts.Views
             }
         }
 
+        public void RefreshAgencies()
+        {
+            LoadAgencies();
+        }
+
         private void CustomizeDataGridView()
         {   //Hiding specific columns
             if (dataGridView_Base.Columns.Contains("Agents"))

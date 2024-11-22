@@ -10,22 +10,6 @@ namespace TravelExperts.Views
         protected DataGridView dataGridView_Base;
         protected TextBox textBox_Base1;
 
-    //Logic to set the flag for the MainForm
-    // This will allow the Buttons shared between AgentControl and AgencyControl to know which CRUD operation to perform.
-    public enum ActionFlag
-        {
-            None,
-            AgentControl,
-            AgencyControl
-        }
-
-        private ActionFlag currentActionFlag = ActionFlag.None;
-        public ActionFlag CurrentActionFlag
-        {
-            get { return currentActionFlag; }
-            set { currentActionFlag = value; }
-        }
-
         public BaseUserControl()
         {
             InitializeComponent();
@@ -100,7 +84,7 @@ namespace TravelExperts.Views
 
 
         // Method to get selected row data
-        public (int agentId, string firstName, string lastName, string middleInitial, string phoneNumber, string email, string position, bool isActive) GetSelectedRowData()
+        public (int agentId, string firstName, string lastName, string middleInitial, string phoneNumber, string email, string position, bool isActive) GetSelectedAgentRowData()
         {
             if (dataGridView_Base.SelectedRows.Count > 0)
             {
@@ -119,6 +103,31 @@ namespace TravelExperts.Views
                     email: selectedRow.Cells["AgtEmail"].Value?.ToString() ?? string.Empty,
                     position: selectedRow.Cells["AgtPosition"].Value?.ToString() ?? string.Empty,
                     isActive: Convert.ToBoolean(selectedRow.Cells["AgentStatus"].Value ?? false) // Default to false if null
+                );
+            }
+            throw new InvalidOperationException("No row selected.");
+        }
+
+
+        public (int agencyId, string agencyAddress, string agencyCity, string agencyProvince, string agencyPostal, string agencyCountry, string agencyPhone, string agencyFax) GetSelectedAgencyRowData()
+        {
+            if (dataGridView_Base.SelectedRows.Count > 0)
+            {
+                var selectedRow = dataGridView_Base.SelectedRows[0];
+
+                // Check if the required cells are not null
+                if (selectedRow.Cells["AgencyId"].Value == null)
+                    throw new InvalidOperationException("AgencyId is null.");
+
+                return (
+                    agencyId: Convert.ToInt32(selectedRow.Cells["AgencyId"].Value),
+                    agencyAddress: selectedRow.Cells["AgncyAddress"].Value?.ToString() ?? string.Empty,
+                    agencyCity: selectedRow.Cells["AgncyCity"].Value?.ToString() ?? string.Empty,
+                    agencyProvince: selectedRow.Cells["AgncyProv"].Value?.ToString() ?? string.Empty,
+                    agencyPostal: selectedRow.Cells["AgncyPostal"].Value?.ToString() ?? string.Empty,
+                    agencyCountry: selectedRow.Cells["AgncyCountry"].Value?.ToString() ?? string.Empty,
+                    agencyPhone: selectedRow.Cells["AgncyPhone"].Value?.ToString() ?? string.Empty,
+                    agencyFax: selectedRow.Cells["AgncyFax"].Value?.ToString() ?? string.Empty
                 );
             }
             throw new InvalidOperationException("No row selected.");

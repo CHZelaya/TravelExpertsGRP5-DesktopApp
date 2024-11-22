@@ -50,6 +50,44 @@
             _context.SaveChanges();
         }
 
+        public void UpdateAgency(Agency agency)
+        {
+            if (agency == null)
+            {
+                throw new ArgumentNullException(nameof(agency), "Agency cannot be null!");
+            }
+            try
+            {
+                var existingAgency = _context.Agencies.Find(agency.AgencyId);
+
+                if ( existingAgency == null)
+                {
+                    throw new InvalidOperationException("Agency ID cannot be found in the database");
+                }
+
+                //Update the properties of the existing Agency
+                existingAgency.AgncyAddress = agency.AgncyAddress;
+                existingAgency.AgncyCity = agency.AgncyCity;
+                existingAgency.AgncyProv = agency.AgncyProv;
+                existingAgency.AgncyPostal = agency.AgncyPostal;
+                existingAgency.AgncyCountry = agency.AgncyCountry;
+                existingAgency.AgncyPhone = agency.AgncyPhone;
+                existingAgency.AgncyFax = agency.AgncyFax;
+
+                _context.Agencies.Update(agency);
+                _context.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                throw new Exception("An error occured while trying to modify the existing agency");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An unexpected error occured", ex);
+            }
+
+        }
+
         public void AddAgent(Agent agent) 
         {
             if (agent == null)
@@ -84,7 +122,7 @@
             try
             {
                 // Find the existing agent in the database
-                var existingAgent = _context.Agents.Find(agent.AgentId); // Assuming AgentId is the primary key
+                var existingAgent = _context.Agents.Find(agent.AgentId); 
 
                 if (existingAgent == null)
                 {
@@ -98,7 +136,7 @@
                 existingAgent.AgtBusPhone = agent.AgtBusPhone;
                 existingAgent.AgtEmail= agent.AgtEmail;
                 existingAgent.AgtPosition= agent.AgtPosition;
-                existingAgent.AgentStatus = agent.AgentStatus; // Assuming this is a bit field
+                existingAgent.AgentStatus = agent.AgentStatus; 
 
                 // Save changes to the database
                 _context.SaveChanges();
@@ -113,6 +151,38 @@
                 // Handling other exceptions
                 throw new Exception("An unexpected error occurred", ex);
             }
+        }
+
+        public void DeleteAgent(Agent agent)
+        {
+            if (agent == null)
+            {
+                throw new ArgumentNullException(nameof(agent), "Agent cannot be null");
+            }
+            try
+            {
+                var existingAgent = _context.Agents.Find(agent.AgentId);
+                if (existingAgent == null)
+                {
+                    throw new InvalidOperationException("Agent not found in the database.");
+                }
+
+                existingAgent.AgentStatus = agent.AgentStatus;
+
+                _context.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                throw new Exception("An error occured while deleting the agent from the database", ex);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An unexpected error occured", ex);
+            } 
+
+
+
+
         }
 
 
