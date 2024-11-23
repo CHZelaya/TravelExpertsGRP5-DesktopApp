@@ -11,7 +11,7 @@ namespace TravelExperts.Views
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new AdminGUIMain());
+            Application.Run(new frmMainMenu());
           //Change line 14 to launch your GUI if needed. Make note of it on commits. 
 
         }
