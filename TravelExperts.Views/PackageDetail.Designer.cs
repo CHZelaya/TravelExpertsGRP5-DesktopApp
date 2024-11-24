@@ -46,6 +46,8 @@
             btn_Remove = new Button();
             Select_ProductSupplier = new ComboBox();
             label7 = new Label();
+            label8 = new Label();
+            label9 = new Label();
             SuspendLayout();
             // 
             // label1
@@ -53,9 +55,9 @@
             label1.AutoSize = true;
             label1.Location = new Point(27, 20);
             label1.Name = "label1";
-            label1.Size = new Size(73, 17);
+            label1.Size = new Size(72, 17);
             label1.TabIndex = 0;
-            label1.Text = "Pkg_Name:";
+            label1.Text = "Pkg Name:";
             // 
             // txt_PkgName
             // 
@@ -71,9 +73,9 @@
             label2.AutoSize = true;
             label2.Location = new Point(27, 57);
             label2.Name = "label2";
-            label2.Size = new Size(66, 17);
+            label2.Size = new Size(65, 17);
             label2.TabIndex = 2;
-            label2.Text = "Pkg_Desc:";
+            label2.Text = "Pkg Desc:";
             // 
             // txt_PkgDesc
             // 
@@ -89,9 +91,9 @@
             label3.AutoSize = true;
             label3.Location = new Point(27, 95);
             label3.Name = "label3";
-            label3.Size = new Size(92, 17);
+            label3.Size = new Size(91, 17);
             label3.TabIndex = 4;
-            label3.Text = "Pkg_StartDate:";
+            label3.Text = "Pkg StartDate:";
             // 
             // txt_StartDate
             // 
@@ -107,9 +109,9 @@
             label4.AutoSize = true;
             label4.Location = new Point(27, 128);
             label4.Name = "label4";
-            label4.Size = new Size(87, 17);
+            label4.Size = new Size(86, 17);
             label4.TabIndex = 6;
-            label4.Text = "Pkg_EndDate:";
+            label4.Text = "Pkg EndDate:";
             // 
             // txt_EndDate
             // 
@@ -125,9 +127,9 @@
             label5.AutoSize = true;
             label5.Location = new Point(27, 163);
             label5.Name = "label5";
-            label5.Size = new Size(94, 17);
+            label5.Size = new Size(93, 17);
             label5.TabIndex = 8;
-            label5.Text = "Pkg_BasePrice:";
+            label5.Text = "Pkg BasePrice:";
             // 
             // txt_BasePrice
             // 
@@ -143,9 +145,9 @@
             label6.AutoSize = true;
             label6.Location = new Point(27, 197);
             label6.Name = "label6";
-            label6.Size = new Size(151, 17);
+            label6.Size = new Size(150, 17);
             label6.TabIndex = 10;
-            label6.Text = "Pkg_AgencyCommission:";
+            label6.Text = "Pkg AgencyCommission:";
             // 
             // txt_AgencyCommission
             // 
@@ -158,11 +160,13 @@
             // 
             // PackageDetailList
             // 
+            PackageDetailList.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            PackageDetailList.ForeColor = SystemColors.WindowText;
             PackageDetailList.FormattingEnabled = true;
-            PackageDetailList.ItemHeight = 17;
+            PackageDetailList.ItemHeight = 14;
             PackageDetailList.Location = new Point(27, 255);
             PackageDetailList.Name = "PackageDetailList";
-            PackageDetailList.Size = new Size(459, 89);
+            PackageDetailList.Size = new Size(459, 88);
             PackageDetailList.TabIndex = 12;
             // 
             // btn_Cancel
@@ -211,12 +215,32 @@
             label7.TabIndex = 17;
             label7.Text = "Product_Supplier:";
             // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(32, 232);
+            label8.Name = "label8";
+            label8.Size = new Size(88, 17);
+            label8.TabIndex = 18;
+            label8.Text = "ProductName";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(241, 232);
+            label9.Name = "label9";
+            label9.Size = new Size(91, 17);
+            label9.TabIndex = 19;
+            label9.Text = "SupplierName";
+            // 
             // PackageDetail
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = btn_Cancel;
             ClientSize = new Size(518, 521);
+            Controls.Add(label9);
+            Controls.Add(label8);
             Controls.Add(label7);
             Controls.Add(Select_ProductSupplier);
             Controls.Add(btn_Remove);
@@ -262,5 +286,7 @@
         private Button btn_Remove;
         private ComboBox Select_ProductSupplier;
         private Label label7;
+        private Label label8;
+        private Label label9;
     }
 }
