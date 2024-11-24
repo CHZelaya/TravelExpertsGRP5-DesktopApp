@@ -55,8 +55,7 @@ namespace TravelExperts.Controllers
             }
             if (!result.Any())
             {
-                Console.WriteLine("No suppliers found for the given Product ID.");
-                throw new Exception("No Supplier found");
+                Console.WriteLine("No suppliers found for the given Product ID.");                
             }
             return result;
         }
@@ -106,6 +105,10 @@ namespace TravelExperts.Controllers
                 var productSupplier = db.ProductsSuppliers
                     .FirstOrDefault(ps => ps.SupplierId == s.SupplierId);
 
+                if (p.ProductId <= 0)//if >=0 no id found
+                {
+                    return -1;
+                }
                 if (productSupplier != null)
                 {
                     // Update existing ProductsSupplier
@@ -162,12 +165,55 @@ namespace TravelExperts.Controllers
                     Supplier s = getSupplierBySupplierId(supplierId);
                     if (s != null)
                     {
-                        db.Suppliers.Remove(s);
+                        ProductsSupplier ps = getProductSupplierBySupplierId(supplierId);
+                        List<BookingDetail> bd = getBookingDetailByProdSupId(ps.ProductSupplierId);
+                        List<SupplierContact> sc = getSupplierContactBySupId(supplierId);
+                        
+                        if(bd!=null)    db.BookingDetails.RemoveRange(bd);
+                        if(sc!=null)    db.SupplierContacts.RemoveRange(sc);
+                        
+                        db.Suppliers.Remove(s);                        
+                        db.ProductsSuppliers.Remove(ps);
                         res = db.SaveChanges();
                     }
                 }
             }
             return res;
+        }
+
+        private static List<BookingDetail> getBookingDetailByProdSupId(int productSupplierId)
+        {
+            List<BookingDetail> bd = new List<BookingDetail>();
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                bd = db.BookingDetails
+                    .Where(bd => bd.ProductSupplierId == productSupplierId)
+                    .ToList();
+            }
+            return bd;
+        }
+        private static List<SupplierContact> getSupplierContactBySupId(int supplierId)
+        {
+            List<SupplierContact> sc = new List<SupplierContact>();
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                sc = db.SupplierContacts
+                    .Where(sc => sc.SupplierId == supplierId)
+                    .ToList();
+            }
+            return sc;
+        }
+
+        private static ProductsSupplier getProductSupplierBySupplierId(int supplierId)
+        {
+            ProductsSupplier ps = new ProductsSupplier();
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                ps = db.ProductsSuppliers
+                    .Where(s => s.SupplierId == supplierId)
+                    .Single();
+            }
+        return ps;
         }
     }
 }
