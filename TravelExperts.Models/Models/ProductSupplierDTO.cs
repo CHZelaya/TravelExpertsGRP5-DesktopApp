@@ -14,6 +14,6 @@ namespace TravelExperts.Models.Models
         public string ProName { get; set; }
         public int? SupplierId { get; set; }
         public string SupName { get; set; }
-        public string DisplayInfo => $"Prod:{ProName},Supplier:{SupName}";
+        public string DisplayInfo => $"Prod:{ProName} , Supplier:{SupName}";
     }
 }

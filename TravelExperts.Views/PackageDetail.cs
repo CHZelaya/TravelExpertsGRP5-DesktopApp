@@ -36,7 +36,7 @@ namespace TravelExperts.Views
                 packageDetails = PackageSupplierController.getDetailsByPackageId(selectPackage.PackageId);
                 foreach (var detail in packageDetails)
                 {
-                    string fromattedText = $"ProName:{detail.ProName},        SupplierName:{detail.SupName}.";
+                    string fromattedText = $"{detail.ProName.PadRight(30)} {detail.SupName.PadRight(30)}";
                     PackageDetailList.Items.Add(fromattedText);
                 }
             }
