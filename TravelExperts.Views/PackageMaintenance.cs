@@ -21,26 +21,31 @@ namespace TravelExperts.Views
         public PackageMaintenance()
         {
             InitializeComponent();
+
+            this.KeyPreview = true;
         }
 
         private void DisplayPackageList(bool isQuery)
         {
             packages = null;
             packageList.Columns.Clear();
-            if (isQuery) {
+            if (isQuery)
+            {
                 decimal? basePrice;
-                if(txt_BasePrice.Text == "")
+                if (txt_BasePrice.Text == "")
                 {
                     basePrice = null;
-                } else
+                }
+                else
                 {
                     basePrice = Convert.ToDecimal(txt_BasePrice.Text);
                 }
-                DateTime? startDate,endDate;
+                DateTime? startDate, endDate;
                 if (Start_Date.Checked)
                 {
                     startDate = Start_Date.Value;
-                } else
+                }
+                else
                 {
                     startDate = null;
                 }
@@ -53,11 +58,12 @@ namespace TravelExperts.Views
                     endDate = null;
                 }
                 packages = PackageController.GetPackagesByQuery(txt_pkgName.Text, startDate, endDate, basePrice);
-            } else
+            }
+            else
             {
                 packages = PackageController.GetPackages();
             }
-            
+
             packageList.DataSource = packages;
 
             DataGridViewButtonColumn editColumn = new DataGridViewButtonColumn();
@@ -247,6 +253,16 @@ namespace TravelExperts.Views
             End_Date.Checked = false;
             txt_BasePrice.Text = "";
             DisplayPackageList(false);
+        }
+
+        private void PackageMaintenance_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) { 
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+
+                btn_GetPackages.PerformClick();
+            }
         }
     }
 }
