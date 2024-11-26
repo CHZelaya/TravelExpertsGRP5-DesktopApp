@@ -12,7 +12,7 @@ namespace TravelExperts.Views
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new LoginForm());
-            //Change line 14 to launch your GUI if needed. Make note of it on commits. 
+          //Change line 14 to launch your GUI if needed. Make note of it on commits. 
 
         }
     }
