@@ -78,9 +78,9 @@
             label1.AutoSize = true;
             label1.Location = new Point(116, 19);
             label1.Name = "label1";
-            label1.Size = new Size(73, 17);
+            label1.Size = new Size(68, 17);
             label1.TabIndex = 3;
-            label1.Text = "Pkg_Name:";
+            label1.Text = "PkgName:";
             // 
             // txt_pkgName
             // 
@@ -170,6 +170,7 @@
             Name = "PackageMaintenance";
             Text = "PackageMaintenance";
             Load += PackageMaintenance_Load;
+            KeyDown += PackageMaintenance_KeyDown;
             ((System.ComponentModel.ISupportInitialize)packageList).EndInit();
             ResumeLayout(false);
             PerformLayout();
