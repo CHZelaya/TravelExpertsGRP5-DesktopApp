@@ -5,10 +5,10 @@
 ### Form 1: Travel Packages Management
 #### Assigned to : Daryl
 (✅ - Copy/paste the checkmark as you finish tasks) 
-- ❌ Implement CRUD functionality for travel packages.
-- ❌ Create a user-friendly interface for adding, editing, and deleting packages.
-- ❌ Add functionality to select products from a product list to associate with packages.
-- ❌ Implement search functionality to filter displayed packages.
+- ✅ Implement CRUD functionality for travel packages.
+- ✅ Create a user-friendly interface for adding, editing, and deleting packages.
+- ✅ Add functionality to select products from a product list to associate with packages.
+- ✅ Implement search functionality to filter displayed packages.
 
 ### Form 2: Agents and Agencies Management
 #### Assigned to : Carlos
@@ -20,10 +20,10 @@
 ### Form 3: Products and Suppliers Management
 #### Assigned to : Sal
 (✅ - Copy/paste the checkmark as you finish tasks)
-- ❌ Develop a user interface for maintaining products and suppliers.
-- ❌ Implement CRUD functionality for products and suppliers.
-- ❌ Create functionality for managing product_suppliers data.
-- ❌ Add search functionality to filter products and suppliers displayed.
+- ✅ Develop a user interface for maintaining products and suppliers.
+- ✅ Implement CRUD functionality for products and suppliers.
+- ✅ Create functionality for managing product_suppliers data.
+- ✅ Add search functionality to filter products and suppliers displayed.
 
 ### Validation Tasks
 #### Assigned to : Cantor
