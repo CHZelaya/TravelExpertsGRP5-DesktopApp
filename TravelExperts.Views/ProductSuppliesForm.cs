@@ -356,6 +356,16 @@ namespace TravelExperts.Views
                 var selectedSupplier = (dynamic)supplierLB.SelectedItem;
                 int supId = selectedSupplier.Key;
                 string supName = selectedSupplier.Value;
+                //check if supplier has any packages that are in future
+                BookingDetail bd = BookingDetailsController.GetFirstUpcomingBooking(supId);
+                //this bd can also be used to display what all packages are booked in future
+                if (bd != null)
+                {
+                    MessageBox.Show($"Cannot delete {supName} as some of their packages are booked by customers",
+                        "Delete Failed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ProductSuppliesForm_Load(sender, e);
+                    return;
+                }
                 DialogResult dr = MessageBox.Show($"Do you want to delete: {supName}",
                     "Message", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if (dr == DialogResult.Yes)
