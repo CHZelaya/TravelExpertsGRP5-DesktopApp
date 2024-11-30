@@ -192,7 +192,6 @@ namespace TravelExperts.Views
         {
             //ProductSuppliesForm_Load(sender, e);
             ShowHideForm(false);//false is !hide
-            //valdating tb(can replace with Cantons)
 
             travelServicesCBx.DisplayMember = "Value";//holds prodName
             travelServicesCBx.ValueMember = "Key";//holds prodId
