@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TravelExperts.Models.Models;
 using TravelExperts.Controllers;
+using TravelExperts.Views.Utils;
 
 namespace TravelExperts.Views
 {
@@ -41,7 +42,7 @@ namespace TravelExperts.Views
         private void btn_login_Click(object sender, EventArgs e)
         {
             bool isAdmin = CheckPrivledges();
-
+            //add validation for login without any input vlaues
             if (isAdmin)
             {
                 string actionFlag = "admin";
