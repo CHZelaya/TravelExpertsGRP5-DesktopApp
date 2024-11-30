@@ -1,82 +1,116 @@
-﻿using System;
-using System.Collections;
+﻿/*
+Author :: η℩.cαηtor ↈ
+Co-Author :: ⌈𝗆𝖾𝗍𝖺𝖼𝗈𝖽𝖺⌋ ⊛
+
+File :: ValidationExamples
+*/
+
+using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using Validation;
 
-public class ValidatorTestSuite
+namespace ValidationExamples
 {
-    public static void Main()
+    class Program
     {
-        Console.WriteLine("Starting ValidationUtils Test Suite...\n");
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Starting Validation Examples...");
 
-        // Test ValidateWithPredicate
-        Console.WriteLine("Using ValidateWithPredicate: Input value = '5', Predicate = (x => (int)x > 3). Result = True");
+            // ValidationUtils Methods Examples:
 
-        // Test ValidateWithPredicate with incorrect type
-        Console.WriteLine("Using ValidateWithPredicate: Input value = '5', Predicate = 'not a function'. Expected predicate type Func<object, bool>, but received type string ('not a function'). Result = False");
+            // ValidateWithPredicate
+            Console.WriteLine("Validating with a custom predicate (even number check): " +
+                              Validation.ValidationUtils.ValidateWithPredicate(4, new Func<object, bool>(x => (int)x % 2 == 0)));
 
-        // Test IsNull
-        Console.WriteLine("Using IsNull to check if the input is null: Input = null, Result = True");
-        Console.WriteLine("Using IsNull to check if the input is null: Input = 5, Result = False");
+            // IsNull
+            Console.WriteLine("Checking if null is null: " + Validation.ValidationUtils.IsNull(null));
 
-        // Test IsDefault
-        Console.WriteLine("Using IsDefault: Input value = '5'. Result = False");
-        Console.WriteLine("Using IsDefault: Input value = '0'. Result = True");
+            // IsDefault
+            Console.WriteLine("Checking if default int is default: " + Validation.ValidationUtils.IsDefault(0));
 
-        // Test IsCollectionEmpty
-        List<int> emptyList = new List<int>();
-        Console.WriteLine("Using IsCollectionEmpty to check if a collection is empty: Input = [], Result = True");
-        List<int> filledList = new List<int> { 1, 2, 3 };
-        Console.WriteLine("Using IsCollectionEmpty to check if a collection is empty: Input = [1, 2, 3], Result = False");
+            // IsCollectionEmpty
+            Console.WriteLine("Checking if empty collection is empty: " +
+                              Validation.ValidationUtils.IsCollectionEmpty(new List<int>()));
 
-        // Test IsCollectionEmpty with incorrect type
-        Console.WriteLine("Using IsCollectionEmpty: Expected type ICollection, but received value of type int (5). Result = False");
+            // IsEnumerableEmpty
+            Console.WriteLine("Checking if empty enumerable is empty: " +
+                              Validation.ValidationUtils.IsEnumerableEmpty(new List<int>()));
 
-        // Test IsEnumerableEmpty
-        IEnumerable emptyEnumerable = new List<int>();
-        Console.WriteLine("Using IsEnumerableEmpty to check if an enumerable is empty: Input = [], Result = True");
-        IEnumerable filledEnumerable = new List<int> { 1, 2, 3 };
-        Console.WriteLine("Using IsEnumerableEmpty to check if an enumerable is empty: Input = [1, 2, 3], Result = False");
+            // IsEmpty
+            Console.WriteLine("Checking if empty string is empty: " + Validation.ValidationUtils.IsEmpty(""));
 
-        // Test IsEnumerableEmpty with incorrect type
-        Console.WriteLine("Using IsEnumerableEmpty: Expected type IEnumerable, but received value of type string ('Not an enumerable'). Result = False");
+            // MatchesPattern
+            Console.WriteLine("Validating email with regex pattern: " +
+                              Validation.ValidationUtils.MatchesPattern("test@example.com", @"^[^@\s]+@[^@\s]+\.[^@\s]+$"));
 
-        // Test IsEmpty
-        Console.WriteLine("Using IsEmpty to check if the collection is empty: Input = [], Result = True");
+            // IsUnique
+            Console.WriteLine("Checking if element is unique in list: " +
+                              Validation.ValidationUtils.IsUnique(3, new List<int> { 1, 2, 3, 4 }));
 
-        // Test IsEmpty with incorrect type
-        Console.WriteLine("Using IsEmpty: Expected a supported collection type, but received value of type int (10). Result = False");
+            // IsAtMin
+            Console.WriteLine("Checking if value is at min: " + Validation.ValidationUtils.IsAtMin(5, 5));
 
-        // Test MatchesPattern
-        Console.WriteLine("Using MatchesPattern to check if input matches pattern '\\d+': Input = 'Hello123', Pattern = '\\d+', Result = True");
+            // IsGreaterThan
+            Console.WriteLine("Checking if value is greater than min: " + Validation.ValidationUtils.IsGreaterThan(10, 5));
 
-        // Test MatchesPattern with incorrect type
-        Console.WriteLine("Using MatchesPattern: Expected a character sequence, but received value of type int (123). Result = False");
+            // IsLessThan
+            Console.WriteLine("Checking if value is less than max: " + Validation.ValidationUtils.IsLessThan(5, 10));
 
-        // Test IsUnique
-        List<int> numbers = new List<int> { 1, 2, 3 };
-        Console.WriteLine("Using IsUnique to check if value is unique in the collection: Input value = 4, Collection = [1, 2, 3], Result = True");
+            // AllElementsMatch
+            Console.WriteLine("Checking if all elements in collection are positive: " +
+                              Validation.ValidationUtils.AllElementsMatch(new List<int> { 1, 2, 3, 4 }, new Func<object, bool>(x => (int)x > 0)));
 
-        // Test IsUnique with incorrect type
-        Console.WriteLine("Using IsUnique: Expected type IEnumerable, but received value of type string ('four'). Result = False");
+            // IsAlphabetical
+            Console.WriteLine("Checking if string is alphabetical: " + Validation.ValidationUtils.IsAlphabetical("HelloWorld"));
 
-        // Test IsAtMin
-        Console.WriteLine("Using IsAtMin to check if input is at minimum value: Input value = 5, Minimum = 5, Result = True");
-        Console.WriteLine("Using IsAtMin: Expected comparable types, but received value of type string ('five'). Result = False");
+            // IsNumeric
+            Console.WriteLine("Checking if string is numeric: " + Validation.ValidationUtils.IsNumeric("123456"));
 
-        // Test IsGreaterThan
-        Console.WriteLine("Using IsGreaterThan to check if input is greater than minimum value: Input value = 6, Minimum = 5, Result = True");
-        Console.WriteLine("Using IsGreaterThan: Expected comparable types, but received value of type string ('six'). Result = False");
+            // IsSelectionMade
+            Console.WriteLine("Checking if selection is made: " + Validation.ValidationUtils.IsSelectionMade(new List<int> { 1, 2, 3 }));
 
-        // Test IsLessThan
-        Console.WriteLine("Using IsLessThan to check if input is less than maximum value: Input value = 4, Maximum = 5, Result = True");
-        Console.WriteLine("Using IsLessThan: Expected comparable types, but received value of type string ('four'). Result = False");
+            // IsLengthAtValue
+            Console.WriteLine("Checking if collection length matches value: " +
+                              Validation.ValidationUtils.IsLengthAtValue(new List<int> { 1, 2, 3 }, 3));
 
-        // Test AllElementsMatch
-        List<int> elements = new List<int> { 2, 4, 6 };
-        Console.WriteLine("Using AllElementsMatch to check if all elements match predicate (x => (int)x % 2 == 0): Input collection = [2, 4, 6], Result = True");
+            // IsValidEnumValue
+            Console.WriteLine("Checking if value is valid enum member: " +
+                              Validation.ValidationUtils.IsValidEnumValue(DayOfWeek.Monday, typeof(DayOfWeek)));
 
-        Console.WriteLine("\nValidationUtils Test Suite Complete.");
+            // IsSelectionWithinLimit
+            Console.WriteLine("Checking if selection is within limit: " +
+                              Validation.ValidationUtils.IsSelectionWithinLimit(new List<int> { 1, 2 }, 3));
+
+            // UpdateSelectionLimit
+            Console.WriteLine("Updating selection limit...");
+            Validation.ValidationUtils.UpdateSelectionLimit(new List<int> { 1, 2, 3 }, 2, () => Console.WriteLine("Selection has been reset."));
+
+            // IsNotNull
+            Console.WriteLine("Checking if value is not null: " + Validation.ValidationUtils.IsNotNull("NotNull"));
+
+            // IsGreaterThanZero
+            Console.WriteLine("Checking if value is greater than zero: " + Validation.ValidationUtils.IsGreaterThanZero(10));
+
+            // IsNonNegativeDecimal
+            Console.WriteLine("Checking if value is non-negative decimal: " + Validation.ValidationUtils.IsNonNegativeDecimal(5.5m));
+
+            // IsNotEmptyCollection
+            Console.WriteLine("Checking if collection is not empty: " + Validation.ValidationUtils.IsNotEmptyCollection(new List<int> { 1 }));
+
+            // ExistsInDatabase
+            Console.WriteLine("Checking if entity exists in database: " +
+                              Validation.ValidationUtils.ExistsInDatabase("entity", e => e.ToString() == "entity"));
+
+            // IsLengthValid
+            Console.WriteLine("Checking if string length is valid: " + Validation.ValidationUtils.IsLengthValid("Hello", 1, 10));
+
+            // IsValidEmail
+            Console.WriteLine("Validating email: " + Validation.ValidationUtils.IsValidEmail("test@example.com"));
+
+            // IsValidPhoneNumber
+            Console.WriteLine("Validating phone number: " + Validation.ValidationUtils.IsValidPhoneNumber("+12345678901"));
+
+            Console.WriteLine("Validation Examples Complete.");
+        }
     }
 }
