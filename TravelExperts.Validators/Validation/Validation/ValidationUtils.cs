@@ -2,13 +2,14 @@
 Author :: η℩.cαηtor ↈ
 Co-Author :: ⌈𝗆𝖾𝗍𝖺𝖼𝗈𝖽𝖺⌋ ⊛
 
-File :: ValidationUtils, Version 2.21
+File :: ValidationUtils, Version 2.26
 */
 
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 
 namespace Validation
@@ -108,14 +109,7 @@ namespace Validation
             {
                 return HandleError(nameof(IsAtMin), "IComparable", value);
             }
-            try
-            {
-                return castValue.CompareTo(castMin) == 0;
-            }
-            catch (ArgumentException)
-            {
-                return HandleError(nameof(IsAtMin), "Comparable types", value);
-            }
+            return castValue.CompareTo(castMin) == 0;
         }
 
         // Checks if a value is greater than a specified minimum.
@@ -125,14 +119,7 @@ namespace Validation
             {
                 return HandleError(nameof(IsGreaterThan), "IComparable", value);
             }
-            try
-            {
-                return castValue.CompareTo(castMin) > 0;
-            }
-            catch (ArgumentException)
-            {
-                return HandleError(nameof(IsGreaterThan), "Comparable types", value);
-            }
+            return castValue.CompareTo(castMin) > 0;
         }
 
         // Checks if a value is less than a specified maximum.
@@ -142,14 +129,7 @@ namespace Validation
             {
                 return HandleError(nameof(IsLessThan), "IComparable", value);
             }
-            try
-            {
-                return castValue.CompareTo(castMax) < 0;
-            }
-            catch (ArgumentException)
-            {
-                return HandleError(nameof(IsLessThan), "Comparable types", value);
-            }
+            return castValue.CompareTo(max) < 0;
         }
 
         // Validates that all elements in a collection satisfy a specified condition.
@@ -247,6 +227,55 @@ namespace Validation
                 castResetAction?.Invoke();
                 Console.WriteLine($"Selection limit exceeded. You can only select up to {castMaxSelections} options.");
             }
+        }
+
+        // New utility methods based on extracted validation logic from views and models
+        public static bool IsNotNull(object value)
+        {
+            return value != null;
+        }
+
+        public static bool IsGreaterThanZero(int value)
+        {
+            return value > 0;
+        }
+
+        public static bool IsNonNegativeDecimal(decimal value)
+        {
+            return value >= 0;
+        }
+
+        public static bool IsNotEmptyCollection<T>(IEnumerable<T> collection)
+        {
+            return collection != null && collection.Any();
+        }
+
+        public static bool ExistsInDatabase<T>(T entity, Func<T, bool> query)
+        {
+            // Placeholder for checking if an entity exists in a database using a query
+            // Example usage: ExistsInDatabase(entity, e => e.Id == someId);
+            return query(entity);
+        }
+
+        public static bool IsLengthValid(string value, int minLength, int maxLength)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                return false;
+            }
+            return value.Length >= minLength && value.Length <= maxLength;
+        }
+
+        public static bool IsValidEmail(string email)
+        {
+            string emailPattern = "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$";
+            return MatchesPattern(email, emailPattern);
+        }
+
+        public static bool IsValidPhoneNumber(string phoneNumber)
+        {
+            string phonePattern = "^\\+?[0-9]{10,15}$";
+            return MatchesPattern(phoneNumber, phonePattern);
         }
     }
 }
