@@ -2,7 +2,7 @@
 Author :: η℩.cαηtor ↈ
 Co-Author :: ⌈𝗆𝖾𝗍𝖺𝖼𝗈𝖽𝖺⌋ ⊛
 
-File :: ValidationUtils, Version 2.26
+File :: ValidationUtils, Version 2.28
 */
 
 using System;
@@ -229,7 +229,7 @@ namespace Validation
             }
         }
 
-        // New utility methods based on extracted validation logic from views and models
+        // New utility methods based on extracted validation logic from models
         public static bool IsNotNull(object value)
         {
             return value != null;
@@ -268,13 +268,13 @@ namespace Validation
 
         public static bool IsValidEmail(string email)
         {
-            string emailPattern = "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$";
+            string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
             return MatchesPattern(email, emailPattern);
         }
 
         public static bool IsValidPhoneNumber(string phoneNumber)
         {
-            string phonePattern = "^\\+?[0-9]{10,15}$";
+            string phonePattern = @"^\+?[0-9]{10,15}$";
             return MatchesPattern(phoneNumber, phonePattern);
         }
     }
