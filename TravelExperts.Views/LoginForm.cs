@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TravelExperts.Models.Models;
 using TravelExperts.Controllers;
+using TravelExperts.Views.Utils;
 
 namespace TravelExperts.Views
 {
@@ -40,8 +41,17 @@ namespace TravelExperts.Views
 
         private void btn_login_Click(object sender, EventArgs e)
         {
+            //add validation for login without any input vlaues
+            string username = txt_username.Text;
+            string pwd = txt_password.Text;
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(pwd)) 
+            {
+                MessageBox.Show("Username or password cannot be empty","Error",
+                    MessageBoxButtons.OK,
+                   MessageBoxIcon.Warning);
+                return;
+            }
             bool isAdmin = CheckPrivledges();
-
             if (isAdmin)
             {
                 string actionFlag = "admin";
