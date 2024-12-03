@@ -32,7 +32,7 @@ namespace TravelExperts.Views
         {
             if (_agentsAndAgencies != null)
             {
-                var agencies = _agentsAndAgencies.GetAgencies();
+                var agencies = _agentsAndAgencies.GetActiveAgencies();
                 dataGridView_Base.DataSource = agencies;
                 CustomizeDataGridView();
             }
