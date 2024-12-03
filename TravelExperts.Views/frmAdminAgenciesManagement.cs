@@ -100,7 +100,25 @@ namespace TravelExperts.Views
 
         private void HandleAgencyDeletion()
         {
-            MessageBox.Show("Not handled yet, need to implement 'status' for Agencies as to not permenantly delete them from the database");
+            Agency agencyToDelete = new Agency
+            {
+                AgencyId = AgencyID,
+                AgencyStatus = false
+            };
+            try
+            {
+                _agentsAndAgencies.DeleteAgency(agencyToDelete);
+                DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            catch (DbUpdateException dbEx)
+            {
+                MessageBox.Show($"Database error while deleting agency: {dbEx.Message}");
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show($"Error deleting Agency: {ex.Message}");
+            }
         }
 
         private void HandleAgencyModify()

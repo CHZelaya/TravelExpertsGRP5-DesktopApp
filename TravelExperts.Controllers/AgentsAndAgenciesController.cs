@@ -14,18 +14,24 @@
             _context = context;
         }
 
+        public AgentsAndAgenciesControllers()
+        {
+        }
+
 
         /// <summary>
         /// Queries DB and returns Agents/Agencies in a List
         /// </summary>
         /// <returns></returns>
-        public List<Agency> GetAgencies()
+        public List<Agency> GetActiveAgencies()
         {
             using (var context = new TravelExpertsContext())
             {
-                return _context.Agencies.ToList();
+                return _context.Agencies.Where(agencies => agencies.AgencyStatus).ToList();
             }
         }
+
+
 
         public List<Agent> GetActiveAgents()
         {
@@ -178,13 +184,37 @@
             catch (Exception ex)
             {
                 throw new Exception("An unexpected error occured", ex);
-            } 
-
-
-
-
+            }
         }
 
+        public void DeleteAgency(Agency agency)
+        {
+            if (agency == null)
+            {
+                throw new ArgumentNullException(nameof(agency), "Agency cannot be null");
+            }
+            try
+            {
+                var existingAgency = _context.Agencies.Find(agency.AgencyId);
+                if (existingAgency == null)
+                {
+                    throw new InvalidOperationException("Agency not found in the database.");
+                }
+
+                existingAgency.AgencyStatus = agency.AgencyStatus;
+
+                _context.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                throw new Exception("An error occured while deleting the agency from the database", ex);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An unexpected error occured", ex);
+            }
+
+        }
 
     }
 }
