@@ -30,14 +30,14 @@ namespace TravelExperts.Views
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            comboBox_Province = new ComboBox();
             textBox_AgencyFaxPhone = new TextBox();
             label7 = new Label();
             button_Cancel = new Button();
             button_OK = new Button();
             textBox_AgencyBusPhone = new TextBox();
             textBox_AgencyCountry = new TextBox();
-            textBox_AgencyPostal = new TextBox();
-            textBox_AgencyProvince = new TextBox();
+            textBox_AgencyPostalCode = new TextBox();
             textBox_AgencyCity = new TextBox();
             textBox_AgencyAddress = new TextBox();
             label6 = new Label();
@@ -52,14 +52,14 @@ namespace TravelExperts.Views
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(comboBox_Province);
             groupBox1.Controls.Add(textBox_AgencyFaxPhone);
             groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(button_Cancel);
             groupBox1.Controls.Add(button_OK);
             groupBox1.Controls.Add(textBox_AgencyBusPhone);
             groupBox1.Controls.Add(textBox_AgencyCountry);
-            groupBox1.Controls.Add(textBox_AgencyPostal);
-            groupBox1.Controls.Add(textBox_AgencyProvince);
+            groupBox1.Controls.Add(textBox_AgencyPostalCode);
             groupBox1.Controls.Add(textBox_AgencyCity);
             groupBox1.Controls.Add(textBox_AgencyAddress);
             groupBox1.Controls.Add(label6);
@@ -75,12 +75,23 @@ namespace TravelExperts.Views
             groupBox1.TabStop = false;
             groupBox1.Text = "Agency Details";
             // 
+            // comboBox_Province
+            // 
+            comboBox_Province.FormattingEnabled = true;
+            comboBox_Province.Items.AddRange(new object[] { "AB", "BC", "MB", "NB", "NL", "NS", "ON", "PE", "QC", "SK", "NT", "NU", "YT" });
+            comboBox_Province.Location = new Point(110, 103);
+            comboBox_Province.Name = "comboBox_Province";
+            comboBox_Province.Size = new Size(202, 23);
+            comboBox_Province.TabIndex = 8;
+            comboBox_Province.Tag = "Province";
+            // 
             // textBox_AgencyFaxPhone
             // 
             textBox_AgencyFaxPhone.Location = new Point(110, 249);
             textBox_AgencyFaxPhone.Name = "textBox_AgencyFaxPhone";
             textBox_AgencyFaxPhone.Size = new Size(202, 23);
             textBox_AgencyFaxPhone.TabIndex = 14;
+            textBox_AgencyFaxPhone.Tag = "Fax";
             // 
             // label7
             // 
@@ -102,6 +113,7 @@ namespace TravelExperts.Views
             button_Cancel.TabIndex = 12;
             button_Cancel.Text = "Cancel";
             button_Cancel.UseVisualStyleBackColor = true;
+            button_Cancel.Click += button_Cancel_Click;
             // 
             // button_OK
             // 
@@ -122,27 +134,24 @@ namespace TravelExperts.Views
             textBox_AgencyBusPhone.Name = "textBox_AgencyBusPhone";
             textBox_AgencyBusPhone.Size = new Size(202, 23);
             textBox_AgencyBusPhone.TabIndex = 11;
+            textBox_AgencyBusPhone.Tag = "Business Phone";
             // 
             // textBox_AgencyCountry
             // 
             textBox_AgencyCountry.Location = new Point(110, 172);
             textBox_AgencyCountry.Name = "textBox_AgencyCountry";
+            textBox_AgencyCountry.ReadOnly = true;
             textBox_AgencyCountry.Size = new Size(202, 23);
             textBox_AgencyCountry.TabIndex = 10;
+            textBox_AgencyCountry.Text = "Canada";
             // 
-            // textBox_AgencyPostal
+            // textBox_AgencyPostalCode
             // 
-            textBox_AgencyPostal.Location = new Point(110, 135);
-            textBox_AgencyPostal.Name = "textBox_AgencyPostal";
-            textBox_AgencyPostal.Size = new Size(202, 23);
-            textBox_AgencyPostal.TabIndex = 9;
-            // 
-            // textBox_AgencyProvince
-            // 
-            textBox_AgencyProvince.Location = new Point(110, 103);
-            textBox_AgencyProvince.Name = "textBox_AgencyProvince";
-            textBox_AgencyProvince.Size = new Size(202, 23);
-            textBox_AgencyProvince.TabIndex = 8;
+            textBox_AgencyPostalCode.Location = new Point(110, 135);
+            textBox_AgencyPostalCode.Name = "textBox_AgencyPostalCode";
+            textBox_AgencyPostalCode.Size = new Size(202, 23);
+            textBox_AgencyPostalCode.TabIndex = 9;
+            textBox_AgencyPostalCode.Tag = "Postal Code";
             // 
             // textBox_AgencyCity
             // 
@@ -150,6 +159,7 @@ namespace TravelExperts.Views
             textBox_AgencyCity.Name = "textBox_AgencyCity";
             textBox_AgencyCity.Size = new Size(202, 23);
             textBox_AgencyCity.TabIndex = 7;
+            textBox_AgencyCity.Tag = "City";
             // 
             // textBox_AgencyAddress
             // 
@@ -157,6 +167,7 @@ namespace TravelExperts.Views
             textBox_AgencyAddress.Name = "textBox_AgencyAddress";
             textBox_AgencyAddress.Size = new Size(202, 23);
             textBox_AgencyAddress.TabIndex = 6;
+            textBox_AgencyAddress.Tag = "Address";
             // 
             // label6
             // 
@@ -248,8 +259,7 @@ namespace TravelExperts.Views
         private Button button_OK;
         private TextBox textBox_AgencyBusPhone;
         private TextBox textBox_AgencyCountry;
-        private TextBox textBox_AgencyPostal;
-        private TextBox textBox_AgencyProvince;
+        private TextBox textBox_AgencyPostalCode;
         private TextBox textBox_AgencyCity;
         private TextBox textBox_AgencyAddress;
         private Label label6;
@@ -261,5 +271,6 @@ namespace TravelExperts.Views
         private Label label_AgenciesTitle;
         private TextBox textBox_AgencyFaxPhone;
         private Label label7;
+        private ComboBox comboBox_Province;
     }
 }

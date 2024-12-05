@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TravelExperts.Controllers;
 using TravelExperts.Models.Models;
+using TravelExperts.Views.Utils;
 
 namespace TravelExperts.Views
 {
@@ -32,21 +33,23 @@ namespace TravelExperts.Views
 
         public string LabelTitle { set { label_AgenciesTitle.Text = value; } }
 
-        public int AgencyID {  get; set; }
+        public int AgencyID { get; set; }
 
         public string AgencyAddress { set { textBox_AgencyAddress.Text = value; } }
 
         public string AgencyCity { set { textBox_AgencyCity.Text = value; } }
 
-        public string AgencyProvince { set { textBox_AgencyProvince.Text = value; } }
+        public string AgencyProvince { set { comboBox_Province.Text = value; } }
 
-        public string AgencyPostalCode { set { textBox_AgencyPostal.Text = value; } }
+        public string AgencyPostalCode { set { textBox_AgencyPostalCode.Text = value; } }
 
         public string AgencyCountry { set { textBox_AgencyCountry.Text = value; } }
 
         public string AgencyBusPhone { set { textBox_AgencyBusPhone.Text = value; } }
 
         public string AgencyFax { set { textBox_AgencyFaxPhone.Text = value; } }
+
+        public string AgencyStatus { get; set; }
 
 
 
@@ -56,39 +59,61 @@ namespace TravelExperts.Views
 
         private void frmAdminAgenciesManagement_Load_1(object sender, EventArgs e)
         {
+            textBox_AgencyCountry.Enabled = false;
+
             if (ActionFlag == "Deletion")
             {
                 //Setting textboxes to read only
                 textBox_AgencyAddress.Enabled = false;
                 textBox_AgencyBusPhone.Enabled = false;
                 textBox_AgencyCity.Enabled = false;
-                textBox_AgencyCountry.Enabled = false;
                 textBox_AgencyFaxPhone.Enabled = false;
-                textBox_AgencyPostal.Enabled = false;
-                textBox_AgencyProvince.Enabled = false;
+                comboBox_Province.Enabled = false;
+                textBox_AgencyPostalCode.Enabled = false;
             }
             else
             {
                 textBox_AgencyAddress.Enabled = true;
                 textBox_AgencyBusPhone.Enabled = true;
                 textBox_AgencyCity.Enabled = true;
-                textBox_AgencyCountry.Enabled = true;
                 textBox_AgencyFaxPhone.Enabled = true;
-                textBox_AgencyPostal.Enabled = true;
-                textBox_AgencyProvince.Enabled = true;
+                comboBox_Province.Enabled = true;
+                textBox_AgencyPostalCode.Enabled = true;
             }
 
         }
 
         private void button_OK_Click(object sender, EventArgs e)
         {
-            if (ActionFlag == "Addition")
+            if
+                (
+                 //Check Address
+                 GenericValidations.IsPresent(textBox_AgencyAddress) &&
+                 GenericValidations.IsValidAddressInput(textBox_AgencyAddress) &&
+                 //Check City
+                 GenericValidations.IsPresent(textBox_AgencyCity) &&
+                 GenericValidations.IsValidAddressInput(textBox_AgencyCity) &&
+                 //Check Province
+                 GenericValidations.IsComboBoxPresent(comboBox_Province) &&
+                 //Check Postal
+                 GenericValidations.IsPresent(textBox_AgencyPostalCode) &&
+                 GenericValidations.IsValidCanadianPostalCode(textBox_AgencyPostalCode) &&
+                 //Check business phone
+                 GenericValidations.IsPresent(textBox_AgencyBusPhone) &&
+                 GenericValidations.IsValidPhoneNumber(textBox_AgencyBusPhone) &&
+                 //Check Fax
+                 GenericValidations.IsPresent(textBox_AgencyFaxPhone) &&
+                 GenericValidations.IsValidPhoneNumber(textBox_AgencyFaxPhone)
+                )
             {
-                HandleAgencyAdditon();
-            }
-            else if (ActionFlag == "Modify")
-            {
-                HandleAgencyModify();
+                if (ActionFlag == "Addition")
+                {
+                    HandleAgencyAdditon();
+                }
+                else if (ActionFlag == "Modify")
+                {
+                    HandleAgencyModify();
+                }
             }
             else if (ActionFlag == "Deletion")
             {
@@ -115,7 +140,7 @@ namespace TravelExperts.Views
             {
                 MessageBox.Show($"Database error while deleting agency: {dbEx.Message}");
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show($"Error deleting Agency: {ex.Message}");
             }
@@ -127,11 +152,12 @@ namespace TravelExperts.Views
             {
                 AgncyAddress = textBox_AgencyAddress.Text,
                 AgncyCity = textBox_AgencyCity.Text,
-                AgncyProv = textBox_AgencyAddress.Text,
-                AgncyPostal = textBox_AgencyPostal.Text,
+                AgncyProv = comboBox_Province.Text,
+                AgncyPostal = textBox_AgencyPostalCode.Text,
                 AgncyCountry = textBox_AgencyCountry.Text,
                 AgncyPhone = textBox_AgencyBusPhone.Text,
-                AgncyFax = textBox_AgencyFaxPhone.Text
+                AgncyFax = textBox_AgencyFaxPhone.Text,
+                AgencyStatus = true
             };
 
             try
@@ -156,11 +182,12 @@ namespace TravelExperts.Views
             {
                 AgncyAddress = textBox_AgencyAddress.Text,
                 AgncyCity = textBox_AgencyCity.Text,
-                AgncyProv = textBox_AgencyAddress.Text,
-                AgncyPostal = textBox_AgencyPostal.Text,
+                AgncyProv = comboBox_Province.Text,
+                AgncyPostal = textBox_AgencyPostalCode.Text,
                 AgncyCountry = textBox_AgencyCountry.Text,
                 AgncyPhone = textBox_AgencyBusPhone.Text,
-                AgncyFax = textBox_AgencyFaxPhone.Text
+                AgncyFax = textBox_AgencyFaxPhone.Text,
+                AgencyStatus = true
 
             };
 
@@ -182,7 +209,10 @@ namespace TravelExperts.Views
             }
         }
 
-
+        private void button_Cancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 
 

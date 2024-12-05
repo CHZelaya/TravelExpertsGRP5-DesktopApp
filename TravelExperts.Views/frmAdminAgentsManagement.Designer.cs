@@ -30,9 +30,9 @@
         {
             label_AgentsTitle = new Label();
             groupBox1 = new GroupBox();
+            comboBox_AgtPosition = new ComboBox();
             button_Cancel = new Button();
             button_OK = new Button();
-            textBox_AgentPosition = new TextBox();
             textBox_AgentEmail = new TextBox();
             textBox_AgentBussPhone = new TextBox();
             textBox_AgentLName = new TextBox();
@@ -59,9 +59,9 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(comboBox_AgtPosition);
             groupBox1.Controls.Add(button_Cancel);
             groupBox1.Controls.Add(button_OK);
-            groupBox1.Controls.Add(textBox_AgentPosition);
             groupBox1.Controls.Add(textBox_AgentEmail);
             groupBox1.Controls.Add(textBox_AgentBussPhone);
             groupBox1.Controls.Add(textBox_AgentLName);
@@ -80,6 +80,15 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Agent Details";
             // 
+            // comboBox_AgtPosition
+            // 
+            comboBox_AgtPosition.FormattingEnabled = true;
+            comboBox_AgtPosition.Items.AddRange(new object[] { "Junior Agent", "Intermidiate Agent", "Senior Agent" });
+            comboBox_AgtPosition.Location = new Point(114, 226);
+            comboBox_AgtPosition.Name = "comboBox_AgtPosition";
+            comboBox_AgtPosition.Size = new Size(202, 23);
+            comboBox_AgtPosition.TabIndex = 2;
+            // 
             // button_Cancel
             // 
             button_Cancel.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 0, 0);
@@ -91,6 +100,7 @@
             button_Cancel.TabIndex = 12;
             button_Cancel.Text = "Cancel";
             button_Cancel.UseVisualStyleBackColor = true;
+            button_Cancel.Click += button_Cancel_Click;
             // 
             // button_OK
             // 
@@ -105,19 +115,13 @@
             button_OK.UseVisualStyleBackColor = true;
             button_OK.Click += button_OK_Click;
             // 
-            // textBox_AgentPosition
-            // 
-            textBox_AgentPosition.Location = new Point(114, 231);
-            textBox_AgentPosition.Name = "textBox_AgentPosition";
-            textBox_AgentPosition.Size = new Size(202, 23);
-            textBox_AgentPosition.TabIndex = 11;
-            // 
             // textBox_AgentEmail
             // 
             textBox_AgentEmail.Location = new Point(114, 193);
             textBox_AgentEmail.Name = "textBox_AgentEmail";
             textBox_AgentEmail.Size = new Size(202, 23);
             textBox_AgentEmail.TabIndex = 10;
+            textBox_AgentEmail.Tag = "Email";
             // 
             // textBox_AgentBussPhone
             // 
@@ -125,6 +129,7 @@
             textBox_AgentBussPhone.Name = "textBox_AgentBussPhone";
             textBox_AgentBussPhone.Size = new Size(202, 23);
             textBox_AgentBussPhone.TabIndex = 9;
+            textBox_AgentBussPhone.Tag = "Phone Number";
             // 
             // textBox_AgentLName
             // 
@@ -132,6 +137,7 @@
             textBox_AgentLName.Name = "textBox_AgentLName";
             textBox_AgentLName.Size = new Size(202, 23);
             textBox_AgentLName.TabIndex = 8;
+            textBox_AgentLName.Tag = "Last Name";
             // 
             // textBox_AgentMInitial
             // 
@@ -139,6 +145,7 @@
             textBox_AgentMInitial.Name = "textBox_AgentMInitial";
             textBox_AgentMInitial.Size = new Size(202, 23);
             textBox_AgentMInitial.TabIndex = 7;
+            textBox_AgentMInitial.Tag = "Middle Initial";
             // 
             // textBox_AgentFName
             // 
@@ -146,6 +153,7 @@
             textBox_AgentFName.Name = "textBox_AgentFName";
             textBox_AgentFName.Size = new Size(202, 23);
             textBox_AgentFName.TabIndex = 6;
+            textBox_AgentFName.Tag = "First Name";
             // 
             // label6
             // 
@@ -222,7 +230,6 @@
 
         private Label label_AgentsTitle;
         private GroupBox groupBox1;
-        private TextBox textBox_AgentPosition;
         private TextBox textBox_AgentEmail;
         private TextBox textBox_AgentBussPhone;
         private TextBox textBox_AgentLName;
@@ -236,5 +243,6 @@
         private Label label1;
         private Button button_Cancel;
         private Button button_OK;
+        private ComboBox comboBox_AgtPosition;
     }
 }

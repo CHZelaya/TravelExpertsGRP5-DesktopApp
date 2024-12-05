@@ -126,7 +126,8 @@ namespace TravelExperts.Views
             // Show the form as a dialog
             if (addForm.ShowDialog() == DialogResult.OK)
             {
-                _agentsAndAgencies.GetActiveAgents();
+                LoadAgentsView();
+
             }
         }
 
@@ -156,7 +157,7 @@ namespace TravelExperts.Views
                 // Show the form as a dialog
                 if (addForm.ShowDialog() == DialogResult.OK)
                 {
-                    _agentsAndAgencies.GetActiveAgents();
+                    LoadAgentsView();
                 }
             }
             catch (InvalidOperationException ex)
@@ -191,7 +192,7 @@ namespace TravelExperts.Views
                 // Show the form as a dialog
                 if (addForm.ShowDialog() == DialogResult.OK)
                 {
-                    _agentsAndAgencies.GetActiveAgents(); // Change to instance method call
+                    LoadAgentsView(); 
                 }
             }
             catch (InvalidOperationException ex)
@@ -218,7 +219,7 @@ namespace TravelExperts.Views
             // Show the form as a dialog
             if (addForm.ShowDialog() == DialogResult.OK)
             {
-                _agentsAndAgencies.GetActiveAgencies();
+                LoadAgenciesView();
             }
         }
 
@@ -243,12 +244,13 @@ namespace TravelExperts.Views
                 addForm.AgencyProvince = agencyProvince;
                 addForm.AgencyPostalCode = agencyPostal;
                 addForm.AgencyCountry = agencyCountry;
+                addForm.AgencyBusPhone = agencyPhone;
                 addForm.AgencyFax = agencyFax;
 
                 // Show the form as a dialog
                 if (addForm.ShowDialog() == DialogResult.OK)
                 {
-                    _agentsAndAgencies.GetActiveAgencies();
+                    LoadAgenciesView();
                 }
             }
             catch (InvalidOperationException ex)
@@ -274,12 +276,14 @@ namespace TravelExperts.Views
                 addForm.AgencyProvince = agencyProvince;
                 addForm.AgencyPostalCode = agencyPostal;
                 addForm.AgencyCountry = agencyCountry;
+                addForm.AgencyBusPhone= agencyPhone;
                 addForm.AgencyFax = agencyFax;
+                
 
                 // Show the form as a dialog
                 if (addForm.ShowDialog() == DialogResult.OK)
                 {
-                    _agentsAndAgencies.GetActiveAgencies();
+                    LoadAgenciesView();
                 }
             }
             catch (InvalidOperationException ex)
