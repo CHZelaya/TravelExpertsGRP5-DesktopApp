@@ -122,10 +122,11 @@
             txt_password.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             txt_password.BackColor = SystemColors.Info;
             txt_password.BorderStyle = BorderStyle.None;
+            txt_password.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txt_password.Location = new Point(578, 475);
             txt_password.Name = "txt_password";
             txt_password.PlaceholderText = "Enter Your Password";
-            txt_password.Size = new Size(308, 16);
+            txt_password.Size = new Size(308, 26);
             txt_password.TabIndex = 3;
             txt_password.TextAlign = HorizontalAlignment.Center;
             // 
@@ -134,10 +135,11 @@
             txt_username.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             txt_username.BackColor = SystemColors.Info;
             txt_username.BorderStyle = BorderStyle.None;
+            txt_username.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txt_username.Location = new Point(578, 365);
             txt_username.Name = "txt_username";
             txt_username.PlaceholderText = "Please Enter Username";
-            txt_username.Size = new Size(308, 16);
+            txt_username.Size = new Size(308, 26);
             txt_username.TabIndex = 2;
             txt_username.TextAlign = HorizontalAlignment.Center;
             // 

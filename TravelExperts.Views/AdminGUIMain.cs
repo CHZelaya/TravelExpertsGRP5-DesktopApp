@@ -138,7 +138,7 @@ namespace TravelExperts.Views
         {
             try
             {
-                var agentsUserControl = (AgentsUserControl)this.Controls["agentsUserControl"];
+                //var agentsUserControl = (AgentsUserControl)this.Controls["agentsUserControl"];
 
                 var (agentId, firstName, middleInitial, lastName, phoneNumber, email, position, isActive) = GetSelectedAgentRowData();
 
