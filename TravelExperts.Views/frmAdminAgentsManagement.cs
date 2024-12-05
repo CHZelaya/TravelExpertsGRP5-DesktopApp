@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TravelExperts.Controllers;
 using TravelExperts.Models.Models;
+using TravelExperts.Views.Utils;
 
 namespace TravelExperts.Views
 {
@@ -44,7 +45,7 @@ namespace TravelExperts.Views
 
         public string AgentEmail { set { textBox_AgentEmail.Text = value; } }
 
-        public string AgentPosition { set { textBox_AgentPosition.Text = value; } }
+        public string AgentPosition { set { comboBox_AgtPosition.Text = value; } }
 
         //public bool AgentStatus { set { text} }
 
@@ -62,7 +63,7 @@ namespace TravelExperts.Views
                 textBox_AgentMInitial.Enabled = false;
                 textBox_AgentBussPhone.Enabled = false;
                 textBox_AgentEmail.Enabled = false;
-                textBox_AgentPosition.Enabled = false;
+                comboBox_AgtPosition.Enabled = false;
             }
             else
             {
@@ -71,21 +72,43 @@ namespace TravelExperts.Views
                 textBox_AgentMInitial.Enabled = true;
                 textBox_AgentBussPhone.Enabled = true;
                 textBox_AgentEmail.Enabled = true;
-                textBox_AgentPosition.Enabled = true;
+                comboBox_AgtPosition.Enabled = true;
             }
         }
 
 
         private void button_OK_Click(object? sender, EventArgs e)
         {
-            if (ActionFlag == "Addition")
+
+            if (
+                // Check Fname
+                GenericValidations.IsPresent(textBox_AgentFName) &&
+                GenericValidations.IsAlphanumeric(textBox_AgentFName) &&
+                //Check Middle Initial
+                GenericValidations.IsPresent(textBox_AgentMInitial) &&
+                GenericValidations.IsAlphanumeric(textBox_AgentMInitial) &&
+                //Check Last name
+                GenericValidations.IsPresent(textBox_AgentLName) &&
+                GenericValidations.IsAlphanumeric(textBox_AgentLName) &&
+                //Check Phone Number
+                GenericValidations.IsPresent(textBox_AgentBussPhone) &&
+                GenericValidations.IsValidPhoneNumber(textBox_AgentBussPhone) &&
+                //Check Email
+                GenericValidations.IsPresent(textBox_AgentEmail) &&
+                GenericValidations.IsValidEmail(textBox_AgentEmail)
+            )
             {
-                HandleAgentAddtion();
+                if (ActionFlag == "Addition")
+                {
+                    HandleAgentAddtion();
+                }
+                if (ActionFlag == "Modify")
+                {
+                    HandleAgentModify();
+                }
             }
-            if (ActionFlag == "Modify")
-            {
-                HandleAgentModify();
-            }
+
+
             if (ActionFlag == "Deletion")
             {
                 HandleAgentDeletion();
@@ -135,7 +158,7 @@ namespace TravelExperts.Views
                 AgtLastName = textBox_AgentLName.Text,
                 AgtBusPhone = textBox_AgentBussPhone.Text,
                 AgtEmail = textBox_AgentEmail.Text,
-                AgtPosition = textBox_AgentPosition.Text,
+                AgtPosition = comboBox_AgtPosition.Text,
                 AgentStatus = true
 
             };
@@ -167,7 +190,7 @@ namespace TravelExperts.Views
                 AgtLastName = textBox_AgentLName.Text,
                 AgtBusPhone = textBox_AgentBussPhone.Text,
                 AgtEmail = textBox_AgentEmail.Text,
-                AgtPosition = textBox_AgentPosition.Text,
+                AgtPosition = comboBox_AgtPosition.Text,
                 AgentStatus = true
 
             };
@@ -189,6 +212,9 @@ namespace TravelExperts.Views
             }
         }
 
-
+        private void button_Cancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
