@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TravelExperts.Views
+namespace TravelExperts.Views.Utils
 {
     public class RoundButton : Button
     {

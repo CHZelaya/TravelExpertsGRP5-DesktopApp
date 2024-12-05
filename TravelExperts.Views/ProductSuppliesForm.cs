@@ -1,10 +1,13 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TravelExperts.Controllers;
@@ -21,35 +24,70 @@ namespace TravelExperts.Views
         }
 
         //global variables
-        List<Product> products = ProductSuppliesController.getAllProducts();
-        List<Supplier> suppliers = ProductSuppliesController.getAllSuppliers();
+        List<Product> products = new List<Product>();
+        List<Supplier> suppliers = new List<Supplier>();
 
         private void ProductSuppliesForm_Load(object sender, EventArgs e)
         {
-            //productID auto-increment
-            //ProductSupplierId auto-increment
-            //SupplierId is not auto increment
+            //clear values
+            searchTB.Clear();
+            ShowHideForm(true);
+            //reset values
+            products = new List<Product>();
+            suppliers = new List<Supplier>();
 
-            //onload load all product and suppliers        
+            //delete existing list
+            travelServicesLB.Items.Clear();
+            supplierLB.Items.Clear();
 
+            //get latest values
+            products = ProductSuppliesController.getAllProducts();
+            suppliers = ProductSuppliesController.getAllSuppliers();
+
+            //onload load all product and suppliers 
             foreach (Product it in products)
             {
                 //adding as keyvalue pair for
                 travelServicesLB.Items.Add
-                    (new KeyValuePair<int, string>(it.ProductId, it.ProdName));
+                    (new KeyValuePair<int, string>
+                    (it.ProductId, it.ProdName));
                 travelServicesLB.DisplayMember = "Value"; // Display the ProdName
                 travelServicesLB.ValueMember = "Key";    // Use the ProdId as the value
             }
             foreach (Supplier it in suppliers)
             {
                 supplierLB.Items.Add
-                     (new KeyValuePair<int, string>(it.SupplierId, it.SupName));
+                     (new KeyValuePair<int, string>
+                     (it.SupplierId, it.SupName));
                 supplierLB.DisplayMember = "Value"; // Display the SupName
                 supplierLB.ValueMember = "Key";    // Use the SupplierId as the value
 
             }
 
 
+        }
+
+        //displays or hides editable form
+        private void ShowHideForm(bool hide)
+        {
+            if (hide)
+            {
+                suppliersTB.Visible = false;
+                suppliersLbl.Visible = false;
+                travelServiceLbl.Visible = false;
+                travelServicesCBx.Visible = false;
+                saveBtn.Visible = false;
+                resetBtn.Visible = false;
+            }
+            else
+            {
+                suppliersTB.Visible = true;
+                suppliersLbl.Visible = true;
+                travelServiceLbl.Visible = true;
+                travelServicesCBx.Visible = true;
+                saveBtn.Visible = true;
+                resetBtn.Visible = true;
+            }
         }
 
         private void travelServicesLB_SelectedIndexChanged(object sender, EventArgs e)
@@ -70,6 +108,14 @@ namespace TravelExperts.Views
                 if (productId > 0)
                 {
                     List<Supplier> suppliers = ProductSuppliesController.getSuppliersByProductId(productId);
+                    if (suppliers.IsNullOrEmpty())
+                    {
+                        MessageBox.Show($"No Suppliers found for: {productName} click add/update to add new supplier",
+                            "No Item Found",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+                        return;
+                    }
                     foreach (Supplier s in suppliers)
                     {
                         supplierLB.Items.Add
@@ -144,12 +190,8 @@ namespace TravelExperts.Views
         /// <param name="e"></param>
         private void addBtn_Click(object sender, EventArgs e)
         {
-            resetBtn_Click(sender, e);//reset before displaying
-            travelServiceLbl.Visible = true;
-            suppliersLbl.Visible = true;
-            travelServicesCBx.Visible = true;
-            suppliersTB.Visible = true;
-            //valdating tb(can replace with Cantons)
+            //ProductSuppliesForm_Load(sender, e);
+            ShowHideForm(false);//false is !hide
 
             travelServicesCBx.DisplayMember = "Value";//holds prodName
             travelServicesCBx.ValueMember = "Key";//holds prodId
@@ -162,16 +204,52 @@ namespace TravelExperts.Views
             //    products.Select(p=>p.ProdName)//selecting only names and adds them into cbx
             //    .ToArray());
 
-            var selectedId = ((KeyValuePair<int, string>)travelServicesCBx.SelectedItem).Key;
+            //check if supplier selected 
+            //if true insert that value in form
+            if (supplierLB.SelectedIndex > -1)
+            {
+                var selectedProduct = (dynamic)supplierLB.SelectedItem;
 
-            suppliersTB.Text = selectedId.ToString();
+                var supID = selectedProduct.Key; // Access Key
+                var supName = selectedProduct.Value; // Access Value
+
+                //storing supid in hidden lbl
+                hiddenLblSupID.Text = Convert.ToString(supID);
+
+                suppliersTB.Text = supName;
+
+                //get product name of that supplier
+                if (supID != null)
+                {
+                    Product p = ProductSuppliesController.getProductBySupplierId(supID);
+                    if (p != null)
+                    {
+                        int index = travelServicesCBx.FindString(p.ProdName);
+                        if (index != -1) // Ensure the item exists in the ComboBox
+                        {
+                            travelServicesCBx.SelectedIndex = index;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Product not found in the list.");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No product found for the given supplier ID.");
+                    }
+                }
+            }
+
         }
 
         //resets the form
         private void resetBtn_Click(object sender, EventArgs e)
         {
-            suppliersTB.Text = string.Empty;
+            ShowHideForm(true);//true is hide
             travelServicesCBx.Items.Clear();
+            suppliersTB.Clear();
+            hiddenLblSupID.Text = "";
         }
 
         /// <summary>
@@ -181,7 +259,135 @@ namespace TravelExperts.Views
         /// <param name="e"></param>
         private void saveBtn_Click(object sender, EventArgs e)
         {
+            //validate form
+            string suppName = suppliersTB.Text.Trim();
+            string prodName="";
+            int productId=0;
+            if (travelServicesCBx.SelectedItem != null)
+            {
+            var selectedProduct = (dynamic)travelServicesCBx.SelectedItem;
+            productId = selectedProduct.Key;
+            prodName = selectedProduct.Value;
+            }
 
+            // Regex to allow only alphanumeric characters and spaces
+            Regex regex = new Regex("^[a-zA-Z0-9 ]*$");
+
+            // TextBox validation
+            if (string.IsNullOrWhiteSpace(suppName)
+                || !regex.IsMatch(suppName))
+            {
+                MessageBox.Show("Text field cannot be empty or have any special characters.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            //cbx validation
+            if (string.IsNullOrWhiteSpace(prodName))
+            {
+                MessageBox.Show("Please select a value from the combo box.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            //save in products, suppliers,product_suppliers
+            //if already exists update else add
+
+            //i have stored supid in a hidden
+            //field in addUpdateBtn_click method
+            string supIdStr = hiddenLblSupID.Text;
+
+            Supplier s = new Supplier();
+            Product p = new Product();
+
+            //store values to prod n supp
+            s.SupName = suppName;
+            p.ProdName = prodName;
+            p.ProductId = productId;
+
+            //check if hidden supid 
+            //if true ie it exists so update
+            if (!string.IsNullOrWhiteSpace(supIdStr))
+            {
+                int supId = Convert.ToInt32(supIdStr);
+                s = ProductSuppliesController
+                    .getSupplierBySupplierId(supId);
+                //updating supname
+                s.SupName = suppName;
+
+
+                //get the name of product from supplier
+                p = ProductSuppliesController
+                    .getProductBySupplierId(supId);
+
+                //updating prodname
+                p.ProdName = prodName;
+                p.ProductId = productId;
+            }
+
+            //if supid present updates
+            //else passes empty supplier and product model objects
+            //this adds into db instead of update
+            int rowsAffected = ProductSuppliesController
+                .AddOrUpdateProdSupp(s, p);
+
+            if (rowsAffected > 0)
+            {
+                MessageBox.Show("Data saved successfully!",
+                    "Success",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+
+                ProductSuppliesForm_Load(sender, e);//refresh data
+            }
+            else
+            {
+                MessageBox.Show($"Error saving data",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        private void deleteBtn_Click(object sender, EventArgs e)
+        {
+            //check if supplier selected
+            if (supplierLB.SelectedItems.Count > 0)
+            {
+                var selectedSupplier = (dynamic)supplierLB.SelectedItem;
+                int supId = selectedSupplier.Key;
+                string supName = selectedSupplier.Value;
+                //check if supplier has any packages that are in future
+                BookingDetail bd = BookingDetailsController.GetFirstUpcomingBooking(supId);
+                //this bd can also be used to display what all packages are booked in future
+                if (bd != null)
+                {
+                    MessageBox.Show($"Cannot delete {supName} as some of their packages are booked by customers",
+                        "Delete Failed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ProductSuppliesForm_Load(sender, e);
+                    return;
+                }
+                DialogResult dr = MessageBox.Show($"Do you want to delete: {supName}",
+                    "Message", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (dr == DialogResult.Yes)
+                {
+                    int resutlt = ProductSuppliesController.deleteSupplierById(supId);
+                    if (resutlt > 0)
+                    {
+                        MessageBox.Show($"Successfully Deleted: {supName}",
+                        "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ProductSuppliesForm_Load(sender, e);
+                    }
+                    else
+                    {
+                        MessageBox.Show($"error deleting: {supName}",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Supplier Not Selected, Please select a supplier to delete",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

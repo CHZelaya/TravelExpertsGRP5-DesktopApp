@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TravelExperts.Models.Models;
 using TravelExperts.Controllers;
+using TravelExperts.Views.Utils;
 
 namespace TravelExperts.Views
 {
@@ -40,6 +41,7 @@ namespace TravelExperts.Views
 
         private void btn_login_Click(object sender, EventArgs e)
         {
+
 
             //First checking to see if the user is valid. 
             if (!CheckValidUser())

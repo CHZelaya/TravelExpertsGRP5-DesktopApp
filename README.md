@@ -20,10 +20,10 @@
 ### Form 3: Products and Suppliers Management
 #### Assigned to : Sal
 (✅ - Copy/paste the checkmark as you finish tasks)
-- ❌ Develop a user interface for maintaining products and suppliers.
-- ❌ Implement CRUD functionality for products and suppliers.
-- ❌ Create functionality for managing product_suppliers data.
-- ❌ Add search functionality to filter products and suppliers displayed.
+- ✅ Develop a user interface for maintaining products and suppliers.
+- ✅ Implement CRUD functionality for products and suppliers.
+- ✅ Create functionality for managing product_suppliers data.
+- ✅ Add search functionality to filter products and suppliers displayed.
 
 ### Validation Tasks
 #### Assigned to : Cantor
