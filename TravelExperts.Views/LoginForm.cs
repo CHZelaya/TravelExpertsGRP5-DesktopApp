@@ -41,17 +41,72 @@ namespace TravelExperts.Views
 
         private void btn_login_Click(object sender, EventArgs e)
         {
-            //add validation for login without any input vlaues
-            string username = txt_username.Text;
-            string pwd = txt_password.Text;
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(pwd)) 
+
+
+            //First checking to see if the user is valid. 
+            if (!CheckValidUser())
             {
-                MessageBox.Show("Username or password cannot be empty","Error",
-                    MessageBoxButtons.OK,
-                   MessageBoxIcon.Warning);
-                return;
+                return; // Exit if user is not valid
             }
-            bool isAdmin = CheckPrivledges();
+
+            //If valid, check privileges
+            CheckUserPrivileges();
+
+        }
+
+
+        /// <summary>
+        /// Checks to see if the user is a valid user
+        /// </summary>
+        /// <returns>True if user is found, false if no user is found.</returns>
+        /// <exception cref="InvalidOperationException"></exception>
+        private bool CheckValidUser()
+        {
+            //First checking to see if fields are empty
+            if (string.IsNullOrEmpty(txt_password.Text) || string.IsNullOrEmpty(txt_username.Text))
+            {
+                MessageBox.Show("Please enter both username and password.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false; //False will prevent login
+            }
+
+            if (_usersController == null) 
+            {
+                throw new InvalidOperationException("UserController is not initialized.");
+            }
+            Users usersToCheck = new Users
+            {
+                username = txt_username.Text,
+                password = txt_password.Text,
+            };
+
+            string message;
+            bool isValidUser = _usersController.ValidateUserCredentials(usersToCheck, out message);
+            
+            //Messagebox for user
+            MessageBox.Show(message, "Login Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            return isValidUser;
+
+        }
+
+
+        /// <summary>
+        /// Checks if user is admin or not.
+        /// </summary>
+        /// <exception cref="NotImplementedException"></exception>
+        private void CheckUserPrivileges()
+        {
+            Users userToCheck = new Users
+            {
+                username = txt_username.Text
+            };
+
+            string message; // Variable to hold the message from CheckUserPrivileges
+            bool isAdmin = _usersController.CheckUserPrivileges(userToCheck, out message); //Check admin status
+
+            //Show message 
+            MessageBox.Show(message, "Login Status", MessageBoxButtons.OK, MessageBoxIcon.Information );
+
             if (isAdmin)
             {
                 string actionFlag = "admin";
@@ -65,22 +120,72 @@ namespace TravelExperts.Views
                 string actionFlag = "user";
                 ToggleViews(new frmMainMenu(actionFlag));
             }
+
         }
 
-        private bool CheckPrivledges()
-        {
-            if (_usersController == null)
-            {
-                throw new InvalidOperationException("UsersController is not initialized.");
-            }
-            Users userToCheck = new Users
-            {
-                username = txt_username.Text,
-            };
 
-            bool result = _usersController.checkAdminStatus(userToCheck);
-            return result;
-        }
+
+
+            //bool isValidUser = CheckPrivledges();
+
+            //if (!isValidUser) 
+            //{
+            //    //exit the method of the user is not valid
+            //    return;
+            //}
+
+            ////If valid, check to see if they are admin or user
+
+            //Users userToCheck = new Users
+            //{
+            //    username = txt_username.Text,
+            //    password = txt_password.Text,
+            //};
+
+            //string message;
+            //bool isAdmin = _usersController.checkAdminStatus(userToCheck, userToCheck.password, out message);
+            ////check admin status
+
+            ////Show the message, whatever it may be, to the user
+            //MessageBox.Show(message, "Login Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            //if (isAdmin)
+            //{
+            //    string actionFlag = "admin";
+            //    ToggleViews(new frmMainMenu(actionFlag));
+            //    pictureBoxTop.Visible = false;
+            //    panelRight.Visible = false;
+            //    panelLeft.Visible = false;
+            //}
+            //else
+            //{
+            //    string actionFlag = "user";
+            //    ToggleViews(new frmMainMenu(actionFlag));
+            //}
+        //}
+
+        //private bool CheckPrivledges()
+        //{
+        //    if (string.IsNullOrEmpty(txt_password.Text) || string.IsNullOrEmpty(txt_username.Text))
+        //    {
+        //        MessageBox.Show("Please enter both username and password.", "Input Error");
+        //        return false;
+        //    }
+        //    if (_usersController == null)
+        //    {
+        //        throw new InvalidOperationException("UsersController is not initialized.");
+        //    }
+        //    Users userToCheck = new Users
+        //    {
+        //        username = txt_username.Text,
+        //        password = txt_password.Text,
+        //    };
+
+        //    string message;
+        //    bool result = _usersController.checkAdminStatus(userToCheck, userToCheck.password, out message);
+        //    MessageBox.Show(message, "Login Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //    return result;
+        //}
 
         private void btnExit_Click(object sender, EventArgs e)
         {
@@ -122,5 +227,7 @@ namespace TravelExperts.Views
             //labelTitle.Text = GetUserFriendlyTitle(targetForm.GetType().Name);
             //btnCloseChildForm.Visible = true;
         }
+
+
     }
 }

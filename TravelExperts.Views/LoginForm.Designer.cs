@@ -94,7 +94,7 @@
             pictureBoxTop.Image = (Image)resources.GetObject("pictureBoxTop.Image");
             pictureBoxTop.Location = new Point(200, 0);
             pictureBoxTop.Name = "pictureBoxTop";
-            pictureBoxTop.Size = new Size(984, 236);
+            pictureBoxTop.Size = new Size(984, 279);
             pictureBoxTop.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxTop.TabIndex = 7;
             pictureBoxTop.TabStop = false;

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,33 +20,64 @@ namespace TravelExperts.Controllers
             _context = context;
         }
 
-        public bool checkAdminStatus(Users user)
+
+        /// <summary>
+        /// Check user role
+        /// </summary>
+        /// <param name="userToCheck"></param>
+        /// <param name="message"></param>
+        /// <returns>Welcome message with Admin or User depending on privileges</returns>
+        public bool CheckUserPrivileges(Users userToCheck, out string? message)
         {
-            if (user == null)
+            if (userToCheck == null) 
             {
-                throw new ArgumentNullException(nameof(user), "User cannot be null!");
+                message = "User to check cannot be empty";
+                return false;
             }
 
-            try
-            {
-                var existingUser = _context.Users.FirstOrDefault(u => u.username == user.username);
+            var checkAdmin = _context.Users.FirstOrDefault(u => u.username == userToCheck.username);
 
-                if (existingUser == null)
-                {
-                    throw new InvalidOperationException("User cannot be found in the database");
-                }
+            // Check if the user exists
+            if (checkAdmin == null)
+            {
+                message = "User not found";
+                return false;
+            }
 
-                // Return the Admin status of the existing user
-                return existingUser.admin;
-            }
-            catch (DbUpdateException ex)
+            // Check if the user is an admin
+            if (checkAdmin.admin == true) // Assuming admin is a bit column where 1 means admin
             {
-                throw new Exception("An error occurred while trying to retrieve the user", ex);
+                message = "Welcome Back Admin";
+                return true;
             }
-            catch (Exception ex)
+            else
             {
-                throw new Exception("An unexpected error occurred", ex);
+                message = "Welcome Back User";
+                return false;
             }
+
         }
-    }
-}
+
+        public bool ValidateUserCredentials(Users usersToCheck, out string? message)
+        {
+            if (usersToCheck == null)
+            {
+                message = "User to check cannot be empty";
+                return false ;
+            }
+            //Logging for debugging
+            Debug.WriteLine($"Attempting to login for Username: {usersToCheck.username}, Password: {usersToCheck.password}");
+            //var existingUser = _context.Users.Find(usersToCheck.username, usersToCheck.password);
+            var existingUser = _context.Users.FirstOrDefault(u => u.username == usersToCheck.username && u.password == usersToCheck.password);
+
+            if (existingUser == null)
+            {
+                message = "Incorrect Credentials";
+                return false;
+            }
+
+            message = "Login Successful";
+            return true;
+        }
+    }//class
+}//namespace

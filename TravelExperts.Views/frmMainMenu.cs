@@ -207,19 +207,24 @@ namespace TravelExperts.Views
             // Bring the child form to the front and show it
             targetForm.BringToFront();
             targetForm.Show();
-
-            // Update the title and visibility of the close button
-            //labelTitle.Text = GetUserFriendlyTitle(targetForm.GetType().Name);
-            //btnCloseChildForm.Visible = true;
         }
 
         private void btnLogOut_Click(object sender, EventArgs e)
-        
         {
-            panelLogo.Visible = false;
-            panelTitleBar.Visible = false;
-            panelMenu.Visible = false;
-            ToggleViews(new LoginForm());
+
+           
+            // Show the confirmation dialog and capture the result
+            DialogResult result = MessageBox.Show("Are you sure you want to logout?", "Logout", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+            // Check if the user clicked OK
+            if (result == DialogResult.OK)
+            {
+                // Perform logout actions
+                panelLogo.Visible = false;
+                panelTitleBar.Visible = false;
+                panelMenu.Visible = false;
+                ToggleViews(new LoginForm());
+            }
         }
-    }
-}
+    }//class
+}//namespace
