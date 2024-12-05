@@ -13,9 +13,9 @@
 ### Form 2: Agents and Agencies Management
 #### Assigned to : Carlos
 (✅ - Copy/paste the checkmark as you finish tasks)
-- ❌ Create an admin user interface for managing agents and agencies.
-- ❌ Implement CRUD functionality for agents and agencies.
-- ❌ Add search functionality to filter agents and agencies displayed.
+- ✅ Create an admin user interface for managing agents and agencies.
+- ✅ Implement CRUD functionality for agents and agencies.
+- ✅ Add search functionality to filter agents and agencies displayed.
 
 ### Form 3: Products and Suppliers Management
 #### Assigned to : Sal
