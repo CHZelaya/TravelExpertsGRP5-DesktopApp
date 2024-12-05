@@ -51,6 +51,7 @@
             // panelMain
             // 
             panelMain.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panelMain.AutoSize = true;
             panelMain.Controls.Add(panelDesktopPanel);
             panelMain.Controls.Add(panelTitleBar);
             panelMain.Controls.Add(panelMenu);
@@ -61,6 +62,7 @@
             // 
             // panelDesktopPanel
             // 
+            panelDesktopPanel.BackColor = Color.FromArgb(233, 240, 248);
             panelDesktopPanel.BackgroundImage = (Image)resources.GetObject("panelDesktopPanel.BackgroundImage");
             panelDesktopPanel.BackgroundImageLayout = ImageLayout.Zoom;
             panelDesktopPanel.Dock = DockStyle.Fill;
@@ -125,15 +127,15 @@
             // 
             btnLogOut.BackColor = Color.Coral;
             btnLogOut.Cursor = Cursors.Hand;
-            btnLogOut.Dock = DockStyle.Bottom;
+            btnLogOut.Dock = DockStyle.Top;
             btnLogOut.FlatAppearance.BorderColor = Color.White;
             btnLogOut.FlatAppearance.BorderSize = 0;
             btnLogOut.FlatStyle = FlatStyle.Flat;
-            btnLogOut.Font = new Font("Palatino Linotype", 12F);
+            btnLogOut.Font = new Font("Palatino Linotype", 18F);
             btnLogOut.ForeColor = Color.White;
             btnLogOut.Image = (Image)resources.GetObject("btnLogOut.Image");
             btnLogOut.ImageAlign = ContentAlignment.MiddleLeft;
-            btnLogOut.Location = new Point(0, 701);
+            btnLogOut.Location = new Point(0, 260);
             btnLogOut.Name = "btnLogOut";
             btnLogOut.Padding = new Padding(12, 0, 0, 0);
             btnLogOut.Size = new Size(336, 60);
@@ -227,10 +229,10 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(30, 3);
+            pictureBox1.Location = new Point(0, -12);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(158, 71);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.Size = new Size(330, 103);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
             // 
@@ -252,6 +254,7 @@
             panelLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
