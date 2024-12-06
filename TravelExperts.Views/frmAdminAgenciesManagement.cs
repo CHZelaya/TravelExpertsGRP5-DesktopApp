@@ -1,13 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using TravelExperts.Controllers;
 using TravelExperts.Models.Models;
 using TravelExperts.Views.Utils;
@@ -85,26 +76,18 @@ namespace TravelExperts.Views
 
         private void button_OK_Click(object sender, EventArgs e)
         {
-            if
-                (
-                 //Check Address
-                 GenericValidations.IsPresent(textBox_AgencyAddress) &&
-                 GenericValidations.IsValidAddressInput(textBox_AgencyAddress) &&
-                 //Check City
-                 GenericValidations.IsPresent(textBox_AgencyCity) &&
-                 GenericValidations.IsValidAddressInput(textBox_AgencyCity) &&
-                 //Check Province
-                 GenericValidations.IsComboBoxPresent(comboBox_Province) &&
-                 //Check Postal
-                 GenericValidations.IsPresent(textBox_AgencyPostalCode) &&
-                 GenericValidations.IsValidCanadianPostalCode(textBox_AgencyPostalCode) &&
-                 //Check business phone
-                 GenericValidations.IsPresent(textBox_AgencyBusPhone) &&
-                 GenericValidations.IsValidPhoneNumber(textBox_AgencyBusPhone) &&
-                 //Check Fax
-                 GenericValidations.IsPresent(textBox_AgencyFaxPhone) &&
-                 GenericValidations.IsValidPhoneNumber(textBox_AgencyFaxPhone)
-                )
+            if ((ActionFlag == "Addition" || ActionFlag == "Modify") &&
+                GenericValidations.IsPresent(textBox_AgencyAddress) &&
+                GenericValidations.IsValidAddressInput(textBox_AgencyAddress) &&
+                GenericValidations.IsPresent(textBox_AgencyCity) &&
+                GenericValidations.IsValidAddressInput(textBox_AgencyCity) &&
+                GenericValidations.IsComboBoxPresent(comboBox_Province) &&
+                GenericValidations.IsPresent(textBox_AgencyPostalCode) &&
+                GenericValidations.IsValidCanadianPostalCode(textBox_AgencyPostalCode) &&
+                GenericValidations.IsPresent(textBox_AgencyBusPhone) &&
+                GenericValidations.IsValidPhoneNumber(textBox_AgencyBusPhone) &&
+                GenericValidations.IsPresent(textBox_AgencyFaxPhone) &&
+                GenericValidations.IsValidPhoneNumber(textBox_AgencyFaxPhone))
             {
                 if (ActionFlag == "Addition")
                 {
@@ -114,14 +97,12 @@ namespace TravelExperts.Views
                 {
                     HandleAgencyModify();
                 }
-            }
-            else if (ActionFlag == "Deletion")
-            {
-                HandleAgencyDeletion();
+                else if (ActionFlag == "Deletion")
+                {
+                    HandleAgencyDeletion();
+                }
             }
         }
-
-
 
         private void HandleAgencyDeletion()
         {

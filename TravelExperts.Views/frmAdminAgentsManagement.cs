@@ -1,14 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using TravelExperts.Controllers;
 using TravelExperts.Models.Models;
 using TravelExperts.Views.Utils;
@@ -81,19 +71,20 @@ namespace TravelExperts.Views
         {
 
             if (
-                // Check Fname
+                (ActionFlag == "Addition" || ActionFlag == "Modify") && // Check for Addition or Modify
+                                                                        // Check First Name
                 GenericValidations.IsPresent(textBox_AgentFName) &&
-                GenericValidations.IsAlphanumeric(textBox_AgentFName) &&
-                //Check Middle Initial
+                GenericValidations.IsAlphanumericWithHyphens(textBox_AgentFName) &&
+                // Check Middle Initial
                 GenericValidations.IsPresent(textBox_AgentMInitial) &&
-                GenericValidations.IsAlphanumeric(textBox_AgentMInitial) &&
-                //Check Last name
+                GenericValidations.IsAlphanumericWithHyphens(textBox_AgentMInitial) &&
+                // Check Last Name
                 GenericValidations.IsPresent(textBox_AgentLName) &&
-                GenericValidations.IsAlphanumeric(textBox_AgentLName) &&
-                //Check Phone Number
+                GenericValidations.IsAlphanumericWithHyphens(textBox_AgentLName) &&
+                // Check Phone Number
                 GenericValidations.IsPresent(textBox_AgentBussPhone) &&
                 GenericValidations.IsValidPhoneNumber(textBox_AgentBussPhone) &&
-                //Check Email
+                // Check Email
                 GenericValidations.IsPresent(textBox_AgentEmail) &&
                 GenericValidations.IsValidEmail(textBox_AgentEmail)
             )
@@ -102,14 +93,12 @@ namespace TravelExperts.Views
                 {
                     HandleAgentAddtion();
                 }
-                if (ActionFlag == "Modify")
+                else if (ActionFlag == "Modify")
                 {
                     HandleAgentModify();
                 }
             }
-
-
-            if (ActionFlag == "Deletion")
+            else if (ActionFlag == "Deletion")
             {
                 HandleAgentDeletion();
             }
