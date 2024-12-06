@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TravelExperts.Views.Utils
+﻿namespace TravelExperts.Views.Utils
 {
     /// <summary>
     /// simple validation class
@@ -163,16 +157,16 @@ namespace TravelExperts.Views.Utils
         /// </summary>
         /// <param name="textBox">TextBox to be checked for alphanumeric input</param>
         /// <returns>true if the input is alphanumeric, false if the input contains non-alphanumeric characters</returns>
-        public static bool IsAlphanumeric(TextBox textBox)
+        public static bool IsAlphanumericWithHyphens(TextBox textBox)
         {
             bool isValid = true;
             string input = textBox.Text;
 
-            // Check if the input contains only alphanumeric characters
-            if (!System.Text.RegularExpressions.Regex.IsMatch(input, "^[a-zA-Z0-9]+$")) // Regex for alphanumeric check
+            // Check if the input contains only alphanumeric characters and hyphens
+            if (!System.Text.RegularExpressions.Regex.IsMatch(input, "^[a-zA-Z0-9-]+$")) // Updated regex to allow hyphens
             {
                 isValid = false;
-                MessageBox.Show($"{textBox.Tag} field can only contain alphanumeric characters (letters and numbers)");
+                MessageBox.Show($"{textBox.Tag} field can only contain alphanumeric characters and hyphens (letters, numbers, and '-')");
                 textBox.Focus(); // Places the cursor on the textbox
             }
             return isValid;
@@ -206,7 +200,7 @@ namespace TravelExperts.Views.Utils
         public static bool IsValidCanadianPostalCode(TextBox textBox)
         {
             bool isValid = true;
-            string postalCodePattern = @"^[A-Z]\d[A-Z] \d[A-Z]\d$"; // Regex for Canadian postal code format
+            string postalCodePattern = @"^[A-Z]\d[A-Z]\d[A-Z]\d$"; // Regex for Canadian postal code format, no space.
 
             // Check if the input matches the postal code pattern
             if (!System.Text.RegularExpressions.Regex.IsMatch(textBox.Text, postalCodePattern))

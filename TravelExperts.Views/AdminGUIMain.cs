@@ -1,5 +1,4 @@
-﻿using System.Data;
-using TravelExperts.Controllers;
+﻿using TravelExperts.Controllers;
 using TravelExperts.Models.Models;
 
 namespace TravelExperts.Views
@@ -21,9 +20,9 @@ namespace TravelExperts.Views
             //Initialize the context and controller
             _context = new TravelExpertsContext();
             _agentsAndAgencies = new AgentsAndAgenciesControllers(_context);
- 
-  
-           
+
+
+
 
 
         }
@@ -34,7 +33,7 @@ namespace TravelExperts.Views
             _actionFlag = "AgentAction";
             LoadAgentsView();
             CustomizeDataGridViewAgents();
-            EnableSorting();
+
         }
 
 
@@ -192,7 +191,7 @@ namespace TravelExperts.Views
                 // Show the form as a dialog
                 if (addForm.ShowDialog() == DialogResult.OK)
                 {
-                    LoadAgentsView(); 
+                    LoadAgentsView();
                 }
             }
             catch (InvalidOperationException ex)
@@ -276,9 +275,9 @@ namespace TravelExperts.Views
                 addForm.AgencyProvince = agencyProvince;
                 addForm.AgencyPostalCode = agencyPostal;
                 addForm.AgencyCountry = agencyCountry;
-                addForm.AgencyBusPhone= agencyPhone;
+                addForm.AgencyBusPhone = agencyPhone;
                 addForm.AgencyFax = agencyFax;
-                
+
 
                 // Show the form as a dialog
                 if (addForm.ShowDialog() == DialogResult.OK)
@@ -361,6 +360,8 @@ namespace TravelExperts.Views
             dataGridView.Columns["AgncyPhone"].HeaderText = "Phone";
             dataGridView.Columns["AgncyFax"].HeaderText = "Fax";
             dataGridView.Columns["AgencyStatus"].HeaderText = "Status";
+            dataGridView.Columns["AgencyStatus"].ReadOnly = true;
+
 
 
         }
