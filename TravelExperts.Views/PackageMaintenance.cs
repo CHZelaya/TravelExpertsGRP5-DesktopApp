@@ -66,6 +66,12 @@ namespace TravelExperts.Views
             }
 
             packageList.DataSource = packages;
+            packageList.Columns["PkgName"].HeaderText = "Package Name";
+            packageList.Columns["PkgStartDate"].HeaderText = "Package StartDate";
+            packageList.Columns["PkgEndDate"].HeaderText = "Package EndDate";
+            packageList.Columns["PkgDesc"].HeaderText = "Package Description";
+            packageList.Columns["PkgBasePrice"].HeaderText = "Package BasePrice";
+            packageList.Columns["PkgAgencyCommission"].HeaderText = "Package AgencyCommission";
 
             DataGridViewButtonColumn editColumn = new DataGridViewButtonColumn();
             editColumn.Name = "Edit";
