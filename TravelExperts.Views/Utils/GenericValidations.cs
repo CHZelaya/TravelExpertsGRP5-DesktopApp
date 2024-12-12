@@ -163,7 +163,7 @@
             string input = textBox.Text;
 
             // Check if the input contains only alphanumeric characters and hyphens
-            if (!System.Text.RegularExpressions.Regex.IsMatch(input, "^[a-zA-Z0-9-]+$")) // Updated regex to allow hyphens
+            if (!System.Text.RegularExpressions.Regex.IsMatch(input, "^[a-zA-Z0-9-.]+$")) // Updated regex to allow hyphens
             {
                 isValid = false;
                 MessageBox.Show($"{textBox.Tag} field can only contain alphanumeric characters and hyphens (letters, numbers, and '-')");
