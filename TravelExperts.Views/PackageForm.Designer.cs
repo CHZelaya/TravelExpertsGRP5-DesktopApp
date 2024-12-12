@@ -47,56 +47,56 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(91, 87);
+            label1.Location = new Point(79, 90);
             label1.Name = "label1";
-            label1.Size = new Size(68, 17);
+            label1.Size = new Size(99, 17);
             label1.TabIndex = 0;
-            label1.Text = "PkgName:";
+            label1.Text = "Package Name:";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(91, 128);
+            label2.Location = new Point(62, 131);
             label2.Name = "label2";
-            label2.Size = new Size(87, 17);
+            label2.Size = new Size(118, 17);
             label2.TabIndex = 1;
-            label2.Text = "PkgStartDate:";
+            label2.Text = "Package StartDate:";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(91, 168);
+            label3.Location = new Point(65, 173);
             label3.Name = "label3";
-            label3.Size = new Size(82, 17);
+            label3.Size = new Size(113, 17);
             label3.TabIndex = 2;
-            label3.Text = "PkgEndDate:";
+            label3.Text = "Package EndDate:";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(91, 211);
+            label4.Location = new Point(48, 213);
             label4.Name = "label4";
-            label4.Size = new Size(61, 17);
+            label4.Size = new Size(130, 17);
             label4.TabIndex = 3;
-            label4.Text = "PkgDesc:";
+            label4.Text = "Package Description:";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(91, 252);
+            label5.Location = new Point(58, 252);
             label5.Name = "label5";
-            label5.Size = new Size(89, 17);
+            label5.Size = new Size(120, 17);
             label5.TabIndex = 4;
-            label5.Text = "PkgBasePrice:";
+            label5.Text = "Package BasePrice:";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(91, 288);
+            label6.Location = new Point(48, 288);
             label6.Name = "label6";
-            label6.Size = new Size(146, 17);
+            label6.Size = new Size(177, 17);
             label6.TabIndex = 5;
-            label6.Text = "PkgAgencyCommission:";
+            label6.Text = "Package AgencyCommission:";
             // 
             // txt_PkgName
             // 
@@ -140,9 +140,9 @@
             // 
             // txt_AgencyCommission
             // 
-            txt_AgencyCommission.Location = new Point(243, 285);
+            txt_AgencyCommission.Location = new Point(231, 285);
             txt_AgencyCommission.Name = "txt_AgencyCommission";
-            txt_AgencyCommission.Size = new Size(237, 23);
+            txt_AgencyCommission.Size = new Size(249, 23);
             txt_AgencyCommission.TabIndex = 11;
             txt_AgencyCommission.Tag = "PkgAgencyCommission";
             // 
