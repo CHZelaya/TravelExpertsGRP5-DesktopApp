@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
-
-// Validation file to define the necessary validator method
+﻿// Validation file to define the necessary validator method
 // Daryl
 namespace TravelExperts.Views
 {
@@ -36,26 +29,28 @@ namespace TravelExperts.Views
         {
             bool isValid = true;
             DateTime selectDatetime = dateTimePicker.Value;
-            if (dateTimePicker.Checked) {
-                if (selectDatetime > DateTime.Today)
+            if (dateTimePicker.Checked)
+            {
+                if (selectDatetime < DateTime.Today)
                 {
                     isValid = false;
-                    MessageBox.Show("The Start date can not be greater than now.");
+                    MessageBox.Show("The Start date for the package cannot be in the past.");
                     dateTimePicker.Focus();
                 }
             }
             return isValid;
         }
 
-        public static bool ValidateEndDate(DateTimePicker dateTimePicker,DateTime startDate)
+        public static bool ValidateEndDate(DateTimePicker dateTimePicker, DateTime startDate)
         {
             bool isValid = true;
             DateTime selectDatetime = dateTimePicker.Value;
-            if (dateTimePicker.Checked) {
+            if (dateTimePicker.Checked)
+            {
                 if (selectDatetime < startDate)
                 {
                     isValid = false;
-                    MessageBox.Show("The End date can not be greater than StartDate.");
+                    MessageBox.Show("The End date cannot be set before the Start Date.");
                     dateTimePicker.Focus();
                 }
             }
@@ -73,7 +68,7 @@ namespace TravelExperts.Views
                 textBox.SelectAll();
                 textBox.Focus();
             }
-            else if (result <= 0)
+            else if (result < 0)
             {
                 isValid = false;
                 MessageBox.Show(textBox.Tag + " has to be positive or zero");
@@ -96,7 +91,7 @@ namespace TravelExperts.Views
                     textBox.SelectAll();
                     textBox.Focus();
                 }
-                else if (result <= 0)
+                else if (result < 0)
                 {
                     isValid = false;
                     MessageBox.Show(textBox.Tag + " has to be positive or zero");
