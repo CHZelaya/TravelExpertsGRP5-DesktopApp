@@ -71,8 +71,10 @@ namespace TravelExperts.Views
         {
 
             if (
-                (ActionFlag == "Addition" || ActionFlag == "Modify") && // Check for Addition or Modify
-                                                                        // Check First Name
+                (ActionFlag == "Addition" || ActionFlag == "Modify") &&
+                // Check for Addition or Modify
+                // Check First Name
+                GenericValidations.IsComboBoxPresent(comboBox_AgtPosition) &&
                 GenericValidations.IsPresent(textBox_AgentFName) &&
                 GenericValidations.IsAlphanumericWithHyphens(textBox_AgentFName) &&
                 // Check Middle Initial
